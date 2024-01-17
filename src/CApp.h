@@ -14,7 +14,6 @@ public:
     SDL_GLContext gOpenGLContext = nullptr;
     GLuint gVertexArrayObject = 0;
     GLuint gVertexBufferObject = 0;
-    GLuint gVertexBufferObject2 = 0;
     GLuint gGraphicsPieplineShaderProgram = 0;
     GLuint vertexbuffer;
 

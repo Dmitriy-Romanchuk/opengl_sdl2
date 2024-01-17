@@ -38,33 +38,28 @@ bool CApp::OnInit()
 
 void CApp::VertexSpecification()
 {
-    const std::vector<GLfloat> vertexPosition{
-        -0.8f, -0.8f, 0.0f,
-        0.8f, -0.8f, 0.0f,
-        0.0f, 0.8f, 0.0f
-    };
+    const std::vector<GLfloat> vertexData{
+        -0.8f, -0.8f, 0.0f, // position
+        1.0f, 0.0f, 0.0f, // color
+        0.8f, -0.8f, 0.0f, // position
+        0.0f, 1.0f, 0.0f, // color
+        0.0f, 0.8f, 0.0f, // position
+        0.0f, 0.0f, 1.0f // color
 
-    const std::vector<GLfloat> vertexColors{
-        1.0f, 0.0f, 0.0f,
-        0.0f, 1.0f, 0.0f,
-        0.0f, 0.0f, 1.0f
     };
 
     glGenVertexArrays(1, &gVertexArrayObject);
     glBindVertexArray(gVertexArrayObject);
+
     glGenBuffers(1, &gVertexBufferObject);
     glBindBuffer(GL_ARRAY_BUFFER, gVertexBufferObject);
-    glBufferData(GL_ARRAY_BUFFER, vertexPosition.size() * sizeof(GLfloat), vertexPosition.data(), GL_STATIC_DRAW);
+    glBufferData(GL_ARRAY_BUFFER, vertexData.size() * sizeof(GLfloat), vertexData.data(), GL_STATIC_DRAW);
 
     glEnableVertexAttribArray(0);
-    glVertexAttribPointer(0, 3, GL_FLOAT, GL_FALSE, 0, (void*)0);
-
-    glGenBuffers(1, &gVertexBufferObject2);
-    glBindBuffer(GL_ARRAY_BUFFER, gVertexBufferObject2);
-    glBufferData(GL_ARRAY_BUFFER, vertexColors.size() * sizeof(GLfloat), vertexColors.data(), GL_STATIC_DRAW);
+    glVertexAttribPointer(0, 3, GL_FLOAT, GL_FALSE, sizeof(GLfloat) * 6, (void*)0);
 
     glEnableVertexAttribArray(1);
-    glVertexAttribPointer(1, 3, GL_FLOAT, GL_FALSE, 0, (void*)0);
+    glVertexAttribPointer(1, 3, GL_FLOAT, GL_FALSE, sizeof(GLfloat) * 6, (void*)(sizeof(GLfloat) * 3));
 
     glBindVertexArray(0);
     glDisableVertexAttribArray(0);
