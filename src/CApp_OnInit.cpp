@@ -39,13 +39,20 @@ bool CApp::OnInit()
 void CApp::VertexSpecification()
 {
     const std::vector<GLfloat> vertexData{
-        -0.8f, -0.8f, 0.0f, // position
+        //first triangle
+        -0.5f, -0.5f, 0.0f, // left vertex position
         1.0f, 0.0f, 0.0f, // color
-        0.8f, -0.8f, 0.0f, // position
+        0.5f, -0.5f, 0.0f, // right vertex position
         0.0f, 1.0f, 0.0f, // color
-        0.0f, 0.8f, 0.0f, // position
-        0.0f, 0.0f, 1.0f // color
-
+        -0.5f, 0.5f, 0.0f, // top vertex position
+        0.0f, 0.0f, 1.0f, // color
+        // Second triangle
+        0.5f, -0.5f, 0.0f, // right vertex position
+        0.0f, 1.0f, 0.0f, // color
+        0.5f, 0.5f, 0.0f, // top vertex position
+        0.0f, 0.0f, 1.0f, // color
+        -0.5f, 0.5f, 0.0f, // left vertex position
+        1.0f, 0.0f, 0.0f, // color
     };
 
     glGenVertexArrays(1, &gVertexArrayObject);

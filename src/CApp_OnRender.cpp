@@ -14,6 +14,6 @@ void CApp::OnRender()
     glBindVertexArray(gVertexArrayObject);
     glBindBuffer(GL_ARRAY_BUFFER, gVertexBufferObject);
 
-    glDrawArrays(GL_TRIANGLES, 0, 3);
+    glDrawArrays(GL_TRIANGLES, 0, 6);
     SDL_GL_SwapWindow(Surf_Display);
 }
