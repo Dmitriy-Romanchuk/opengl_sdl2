@@ -1,5 +1,5 @@
-//#ifndef _CAPP_H_
-//#define _CAPP_H_
+// #ifndef _CAPP_H_
+// #define _CAPP_H_
 
 #include <GL/glew.h>
 #include <SDL2/SDL.h>
@@ -24,8 +24,8 @@ public:
 
 public:
     bool OnInit();
-    
-    void VertexSpecification(); 
+
+    void VertexSpecification();
 
     void CreateGraphicsPiepline();
 
@@ -33,7 +33,9 @@ public:
 
     GLuint CompileShader(GLuint type, const std::string& source);
 
-    std::string LoadShaderAsString (const std::string& filename);
+    std::string LoadShaderAsString(const std::string& filename);
+
+    GLuint gIndexBufferObject = 0;
 
     void OnEvent(SDL_Event* Event);
 
@@ -46,10 +48,10 @@ public:
     void GetOpenGLVersionInfo()
     {
         std::cout << "Vendor: " << glGetString(GL_VENDOR) << std::endl;
-        std::cout << "Renderer: " << glGetString(GL_RENDERER)<< std::endl;
-        std::cout << "Version: " << glGetString(GL_VERSION)<< std::endl;
-        std::cout << "Shading Language: " << glGetString(GL_SHADING_LANGUAGE_VERSION)<< std::endl;
+        std::cout << "Renderer: " << glGetString(GL_RENDERER) << std::endl;
+        std::cout << "Version: " << glGetString(GL_VERSION) << std::endl;
+        std::cout << "Shading Language: " << glGetString(GL_SHADING_LANGUAGE_VERSION) << std::endl;
     }
 };
 
-//#endif
+// #endif
