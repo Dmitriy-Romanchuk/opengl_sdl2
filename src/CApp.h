@@ -3,6 +3,10 @@
 
 #include <GL/glew.h>
 #include <SDL2/SDL.h>
+#include <glm/glm.hpp>
+#include <glm/mat4x4.hpp>
+#include <glm/vec3.hpp>
+#include <glm/gtc/matrix_transform.hpp>
 #include <iostream>
 #include <string>
 
@@ -16,6 +20,11 @@ public:
     GLuint gVertexBufferObject = 0;
     GLuint gGraphicsPieplineShaderProgram = 0;
     GLuint vertexbuffer;
+    float g_uOffset = -2.0f;
+    float g_uRotate = 0.0f;
+    float g_uScale = 0.5f;
+    int gScreenWidth = 800;
+    int gScreenHeight = 800;
 
 public:
     CApp();

@@ -18,7 +18,7 @@ bool CApp::OnInit()
     SDL_GL_SetAttribute(SDL_GL_DOUBLEBUFFER, 1);
     SDL_GL_SetAttribute(SDL_GL_DEPTH_SIZE, 24);
 
-    Surf_Display = SDL_CreateWindow("OpenGL Window", SDL_WINDOWPOS_CENTERED_MASK, SDL_WINDOWPOS_CENTERED_MASK, 800, 800, SDL_WINDOW_OPENGL | SDL_WINDOW_RESIZABLE);
+    Surf_Display = SDL_CreateWindow("OpenGL Window", SDL_WINDOWPOS_CENTERED_MASK, SDL_WINDOWPOS_CENTERED_MASK, gScreenWidth, gScreenHeight, SDL_WINDOW_OPENGL | SDL_WINDOW_RESIZABLE);
     gOpenGLContext = SDL_GL_CreateContext(Surf_Display);
 
     // glew initialize;
@@ -32,6 +32,7 @@ bool CApp::OnInit()
     GetOpenGLVersionInfo();
     VertexSpecification();
     CreateGraphicsPiepline();
+    glUseProgram(gGraphicsPieplineShaderProgram);
 
     return true;
 }
