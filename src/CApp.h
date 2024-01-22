@@ -9,6 +9,7 @@
 #include <glm/gtc/matrix_transform.hpp>
 #include <iostream>
 #include <string>
+#include <Camera.h>
 
 class CApp
 {
@@ -25,6 +26,7 @@ public:
     float g_uScale = 0.5f;
     int gScreenWidth = 800;
     int gScreenHeight = 800;
+    Camera gCamera;
 
 public:
     CApp();

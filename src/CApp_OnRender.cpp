@@ -9,7 +9,7 @@ void CApp::OnRender()
     glClearColor(0.f, 1.f, 1.f, 1.f);
     glClear(GL_DEPTH_BUFFER_BIT | GL_COLOR_BUFFER_BIT);
 
-    
+    g_uRotate -= 0.1f;
 
     glm::mat4 model = glm::translate(glm::mat4(1.0f), glm::vec3(0.0f, 0.0f, g_uOffset));
 
@@ -19,6 +19,14 @@ void CApp::OnRender()
     GLint u_ModelMatrixLocation = glGetUniformLocation(gGraphicsPieplineShaderProgram, "u_ModelMatrix");
 
     glUniformMatrix4fv(u_ModelMatrixLocation, 1, GL_FALSE, &model[0][0]);
+
+    //camera
+    glm::mat4 view = gCamera.GetViewMatrix();
+    GLint u_ViewLocation = glGetUniformLocation(gGraphicsPieplineShaderProgram, "u_ViewMatrix");
+
+    glUniformMatrix4fv(u_ViewLocation, 1, GL_FALSE, &view[0][0]);
+
+
 
 
 
@@ -34,7 +42,6 @@ void CApp::OnRender()
 
 
     glBindVertexArray(gVertexArrayObject);
-    glBindBuffer(GL_ARRAY_BUFFER, gVertexBufferObject);
 
     glDrawElements(GL_TRIANGLES, 6, GL_UNSIGNED_INT, 0);
     SDL_GL_SwapWindow(Surf_Display);

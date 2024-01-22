@@ -16,7 +16,7 @@ include_directories(
     
 )
 
-SET(LINKER_FLAGS "-lmingw32 -lSDL2main -lSDL2")
+SET(LINKER_FLAGS "-Wall -lmingw32 -lSDL2main -lSDL2")
 SET(CMAKE_CXX_FLAGS "${CMAKE_CXX_FLAGS} ${LINKER_FLAGS}")
 
 set(SOURCE
@@ -26,6 +26,7 @@ set(SOURCE
     ${CMAKE_CURRENT_SOURCE_DIR}/src/CApp_OnLoop.cpp
     ${CMAKE_CURRENT_SOURCE_DIR}/src/CApp_OnRender.cpp
     ${CMAKE_CURRENT_SOURCE_DIR}/src/CApp_OnCleanup.cpp
+    ${CMAKE_CURRENT_SOURCE_DIR}/src/Camera.cpp
 )
 
 add_executable(app ${SOURCE})

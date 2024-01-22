@@ -34,6 +34,10 @@ bool CApp::OnInit()
     CreateGraphicsPiepline();
     glUseProgram(gGraphicsPieplineShaderProgram);
 
+    SDL_WarpMouseInWindow(Surf_Display, gScreenWidth / 2, gScreenHeight / 2);
+    SDL_SetRelativeMouseMode(SDL_TRUE);
+
+
     return true;
 }
 
