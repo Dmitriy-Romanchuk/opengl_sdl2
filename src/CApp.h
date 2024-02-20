@@ -1,15 +1,13 @@
-// #ifndef _CAPP_H_
-// #define _CAPP_H_
-
+#include <Camera.h>
 #include <GL/glew.h>
 #include <SDL2/SDL.h>
+#include <SOIL/SOIL.h>
 #include <glm/glm.hpp>
+#include <glm/gtc/matrix_transform.hpp>
 #include <glm/mat4x4.hpp>
 #include <glm/vec3.hpp>
-#include <glm/gtc/matrix_transform.hpp>
 #include <iostream>
 #include <string>
-#include <Camera.h>
 
 class CApp
 {
@@ -27,6 +25,9 @@ public:
     int gScreenWidth = 800;
     int gScreenHeight = 800;
     Camera gCamera;
+    GLuint texture;
+
+    bool m_needRotate = true;
 
 public:
     CApp();
@@ -64,5 +65,3 @@ public:
         std::cout << "Shading Language: " << glGetString(GL_SHADING_LANGUAGE_VERSION) << std::endl;
     }
 };
-
-// #endif
