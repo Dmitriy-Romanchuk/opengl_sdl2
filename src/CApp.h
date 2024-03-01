@@ -17,15 +17,18 @@ public:
     SDL_GLContext gOpenGLContext = nullptr;
     GLuint gVertexArrayObject = 0;
     GLuint gVertexBufferObject = 0;
-    GLuint gGraphicsPieplineShaderProgram = 0;
+    GLuint m_shaderProgram = 0;
+    GLuint m_lampShaderProgram = 0;
     GLuint vertexbuffer;
-    float g_uOffset = -2.0f;
+    float g_uOffset = -3.0f;
     float g_uRotate = 0.0f;
     float g_uScale = 0.5f;
     int gScreenWidth = 800;
     int gScreenHeight = 800;
     Camera gCamera;
     GLuint texture;
+    GLuint lightVAO = 0;
+    
 
     bool m_needRotate = true;
 
@@ -41,7 +44,7 @@ public:
 
     void CreateGraphicsPiepline();
 
-    GLuint CreateShaderProgram(const std::string& vs, const std::string& fs);
+    GLuint CreateShaderProgram(const std::string& vertexshadersource, const std::string& fragmentshadersource);
 
     GLuint CompileShader(GLuint type, const std::string& source);
 

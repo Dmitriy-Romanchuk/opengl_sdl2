@@ -2,73 +2,70 @@
 
 void CApp::OnRender()
 {
+    glUseProgram(m_shaderProgram);
     glEnable(GL_DEPTH_TEST);
     glDisable(GL_CULL_FACE);
 
     glViewport(0, 0, 800, 800);
-    glClearColor(0.f, 1.f, 1.f, 1.f);
+    glClearColor(0.1f, 0.1f, 0.1f, 1.0f);
     glClear(GL_DEPTH_BUFFER_BIT | GL_COLOR_BUFFER_BIT);
 
     if (m_needRotate == true)
     {
         g_uRotate -= 0.5f;
     }
+    glm::vec3 objectColor = { 1.0f, 0.5f, 0.31f };
+    glm::vec3 lightColor = { 1.0f, 1.0f, 1.0f };
 
-    glm::vec3 cubePositions[] = {
-        glm::vec3(0.0f, 0.0f, 0.0f),
-        glm::vec3(2.0f, 5.0f, -15.0f),
-        glm::vec3(-1.5f, -2.2f, -2.5f),
-        glm::vec3(-3.8f, -2.0f, -12.3f),
-        glm::vec3(2.4f, -0.4f, -3.5f),
-        glm::vec3(-1.7f, 3.0f, -7.5f),
-        glm::vec3(1.3f, -2.0f, -2.5f),
-        glm::vec3(1.5f, 2.0f, -2.5f),
-        glm::vec3(1.5f, 0.2f, -1.5f),
-        glm::vec3(-1.3f, 1.0f, -1.5f)
-    };
+    GLint objectColorLoc = glGetUniformLocation(m_shaderProgram, "objectColor");
+    GLint lightColorLoc = glGetUniformLocation(m_shaderProgram, "lightColor");
+    glUniform3f(objectColorLoc, objectColor.r, objectColor.g, objectColor.b);
+    glUniform3f(lightColorLoc, lightColor.r, lightColor.g, lightColor.b);
 
-    // glm::mat4 model = glm::translate(glm::mat4(1.0f), glm::vec3(0.0f, 0.0f, g_uOffset));
-    //
-    // model = glm::rotate(model, glm::radians(g_uRotate), glm::vec3(0.0f, 1.0f, 0.0f));
-    // model = glm::scale(model, glm::vec3(g_uScale, g_uScale, g_uScale));
-    //
-    // GLint u_ModelMatrixLocation = glGetUniformLocation(gGraphicsPieplineShaderProgram, "u_ModelMatrix");
-    //
-    // glUniformMatrix4fv(u_ModelMatrixLocation, 1, GL_FALSE, &model[0][0]);
+    glm::mat4 model = glm::translate(glm::mat4(1.0f), glm::vec3(-0.5f, 0.0f, g_uOffset));
+    model = glm::rotate(model, glm::radians(g_uRotate), glm::vec3(0.0f, 1.0f, 0.0f));
+    model = glm::scale(model, glm::vec3(g_uScale, g_uScale, g_uScale));
 
-    // camera
     glm::mat4 view = gCamera.GetViewMatrix();
-    GLint u_ViewLocation = glGetUniformLocation(gGraphicsPieplineShaderProgram, "u_ViewMatrix");
+    glm::mat4 perspective = glm::perspective(glm::radians(45.0f), (float)gScreenWidth / (float)gScreenHeight, 0.1f, 10.0f);
 
+    GLint u_ModelMatrixLocation = glGetUniformLocation(m_shaderProgram, "u_ModelMatrix");
+    GLint u_ViewLocation = glGetUniformLocation(m_shaderProgram, "u_ViewMatrix");
+    GLint u_ProjectionLocation = glGetUniformLocation(m_shaderProgram, "u_Projection");
+
+    glUniformMatrix4fv(u_ModelMatrixLocation, 1, GL_FALSE, &model[0][0]);
     glUniformMatrix4fv(u_ViewLocation, 1, GL_FALSE, &view[0][0]);
-
-    //////////////////////////////////////////////////////////////////////////
-
-    glm::mat4 perspective = glm::perspective(glm::radians(45.0f), (float)gScreenWidth / (float)gScreenHeight, 0.1f, 100.0f);
-
-    GLint u_ProjectionLocation = glGetUniformLocation(gGraphicsPieplineShaderProgram, "u_Projection");
-
     glUniformMatrix4fv(u_ProjectionLocation, 1, GL_FALSE, &perspective[0][0]);
 
-    //////////////////////////////////////////////////////////////////////////
+    // glPolygonMode(GL_FRONT_AND_BACK, GL_LINE); //for wireframe render
 
     glBindVertexArray(gVertexArrayObject);
+    glDrawElements(GL_TRIANGLES, 36, GL_UNSIGNED_INT, 0);
+    glBindVertexArray(0);
+    //glUseProgram(0);
 
-    // glPolygonMode(GL_FRONT_AND_BACK, GL_LINE); for wireframe render
+    //--------------------------------------------------------------------------------
+    // drawing the small light cube
+    glUseProgram(m_lampShaderProgram);
 
-    for (GLuint i = 0; i < 10; i++)
+    glm::vec3 lightPos(0.3f, 0.9f, -2.0f);
+    
+    model = glm::mat4(1.0f);
+    model = glm::translate(model, lightPos);
+    model = glm::scale(model, glm::vec3(0.2f));
 
-    {
-        glm::mat4 model = glm::translate(glm::mat4(1.0f), cubePositions[i]);
+    u_ModelMatrixLocation = glGetUniformLocation(m_lampShaderProgram, "u_ModelMatrix");
+    u_ViewLocation = glGetUniformLocation(m_lampShaderProgram, "u_ViewMatrix");
+    u_ProjectionLocation = glGetUniformLocation(m_lampShaderProgram, "u_Projection");
 
-        model = glm::rotate(model, glm::radians(g_uRotate), glm::vec3(0.0f, 1.0f, 0.0f));
-        model = glm::scale(model, glm::vec3(g_uScale, g_uScale, g_uScale));
+    glUniformMatrix4fv(u_ViewLocation, 1, GL_FALSE, &view[0][0]);
+    glUniformMatrix4fv(u_ProjectionLocation, 1, GL_FALSE, &perspective[0][0]);
+    glUniformMatrix4fv(u_ModelMatrixLocation, 1, GL_FALSE, &model[0][0]);
 
-        GLint u_ModelMatrixLocation = glGetUniformLocation(gGraphicsPieplineShaderProgram, "u_ModelMatrix");
-
-        glUniformMatrix4fv(u_ModelMatrixLocation, 1, GL_FALSE, &model[0][0]);
-        glDrawElements(GL_TRIANGLES, 36, GL_UNSIGNED_INT, 0);
-    }
-
+    glBindVertexArray(lightVAO);
+    glDrawElements(GL_TRIANGLES, 36, GL_UNSIGNED_INT, 0);
+    glBindVertexArray(0);
+    //glUseProgram(0);
+    
     SDL_GL_SwapWindow(Surf_Display);
 }

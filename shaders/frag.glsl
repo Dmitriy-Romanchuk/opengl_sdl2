@@ -1,12 +1,11 @@
 #version 460 core
 
-in vec3 v_vertexColors;
-in vec2 TexCoord;
+uniform vec3 objectColor;
+uniform vec3 lightColor;
 
 out vec4 color;
-uniform sampler2D ourTexture;
 
 void main()
 {
-	color = texture(ourTexture, TexCoord);
+    color = vec4(lightColor * objectColor, 1.0f);
 }

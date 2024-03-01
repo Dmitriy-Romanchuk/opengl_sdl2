@@ -15,6 +15,11 @@ void CApp::OnEvent(SDL_Event* Event)
     //     gCamera.MouseLook(mouseX, mouseY);
     // }
 
+    if (state[SDL_SCANCODE_ESCAPE])
+    {
+        Running = false;
+    }
+
     if (state[SDL_SCANCODE_UP])
     {
         // g_uOffset += 0.01f;
