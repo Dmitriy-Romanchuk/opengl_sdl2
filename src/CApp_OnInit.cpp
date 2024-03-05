@@ -44,21 +44,62 @@ void CApp::VertexSpecification()
 {
     const std::vector<GLfloat> vertexData{
         // 0 vertex
-        -0.5f, -0.5f, 0.0f,  // left vertex position
+        //-0.5f, -0.5f, 0.0f,  // left vertex position
         // 1 vertex
-        0.5f, -0.5f, 0.0f,   // right vertex position
+        // 0.5f, -0.5f, 0.0f,   // right vertex position
         // 2 vertex
-        -0.5f, 0.5f, 0.0f,   // top vertex position
+        //-0.5f, 0.5f, 0.0f,   // top vertex position
         // 3 vertex
-        0.5f, 0.5f, 0.0f,    // top vertex position
+        // 0.5f, 0.5f, 0.0f,    // top vertex position
         // 4 vertex
-        0.5f, -0.5f, -1.0f,  // right vertex position
+        // 0.5f, -0.5f, -1.0f,  // right vertex position
         // 5 vertex
-        0.5f, 0.5f, -1.0f,   // top vertex position
+        // 0.5f, 0.5f, -1.0f,   // top vertex position
         // 6 vertex
-        -0.5f, 0.5f, -1.0f,  // top vertex position
+        //-0.5f, 0.5f, -1.0f,  // top vertex position
         // 7 vertex
-        -0.5f, -0.5f, -1.0f, // left vertex position
+        //-0.5f, -0.5f, -1.0f, // left vertex position
+        -0.5f, -0.5f, 0.0f, 0.0f, 0.0f, 1.0f,
+        0.5f, -0.5f, 0.0f, 0.0f, 0.0f, 1.0f,
+        0.5f, 0.5f, 0.0f, 0.0f, 0.0f, 1.0f,
+        -0.5f, 0.5f, 0.0f, 0.0f, 0.0f, 1.0f,
+        -0.5f, -0.5f, 0.0f, 0.0f, 0.0f, 1.0f,
+        0.5f, 0.5f, 0.0f, 0.0f, 0.0f, 1.0f,
+
+        0.5f, -0.5f, 0.0f, 1.0f, 0.0f, 0.0f,
+        0.5f, -0.5f, -1.0f, 1.0f, 0.0f, 0.0f,
+        0.5f, 0.5f, -1.0f, 1.0f, 0.0f, 0.0f,
+        0.5f, 0.5f, 0.0f, 1.0f, 0.0f, 0.0f,
+        0.5f, -0.5f, 0.0f, 1.0f, 0.0f, 0.0f,
+        0.5f, 0.5f, -1.0f, 1.0f, 0.0f, 0.0f,
+
+        0.5f, -0.5f, -1.0f, 0.0f, 0.0f, -1.0f,
+        -0.5f, -0.5f, -1.0f, 0.0f, 0.0f, -1.0f,
+        -0.5f, 0.5f, -1.0f, 0.0f, 0.0f, -1.0f,
+        0.5f, 0.5f, -1.0f, 0.0f, 0.0f, -1.0f,
+        0.5f, -0.5f, -1.0f, 0.0f, 0.0f, -1.0f,
+        -0.5f, 0.5f, -1.0f, 0.0f, 0.0f, -1.0f,
+
+        -0.5f, -0.5f, -1.0f, -1.0f, 0.0f, 0.0f,
+        -0.5f, -0.5f, 0.0f, -1.0f, 0.0f, 0.0f,
+        -0.5f, 0.5f, 0.0f, -1.0f, 0.0f, 0.0f,
+        -0.5f, 0.5f, -1.0f, -1.0f, 0.0f, 0.0f,
+        -0.5f, -0.5f, -1.0f, -1.0f, 0.0f, 0.0f,
+        -0.5f, 0.5f, 0.0f, -1.0f, 0.0f, 0.0f,
+
+        -0.5f, 0.5f, 0.0f, 0.0f, 1.0f, 0.0f,
+        0.5f, 0.5f, 0.0f, 0.0f, 1.0f, 0.0f,
+        0.5f, 0.5f, -1.0f, 0.0f, 1.0f, 0.0f,
+        -0.5f, 0.5f, -1.0f, 0.0f, 1.0f, 0.0f,
+        -0.5f, 0.5f, 0.0f, 0.0f, 1.0f, 0.0f,
+        0.5f, 0.5f, -1.0f, 0.0f, 1.0f, 0.0f,
+
+        -0.5f, -0.5f, 0.0f, 0.0f, -1.0f, 0.0f,
+        -0.5f, -0.5f, -1.0f, 0.0f, -1.0f, 0.0f,
+        0.5f, -0.5f, -1.0f, 0.0f, -1.0f, 0.0f,
+        0.5f, -0.5f, -1.0f, 0.0f, -1.0f, 0.0f,
+        -0.5f, -0.5f, 0.0f, 0.0f, -1.0f, 0.0f,
+        0.5f, -0.5f, -1.0f, 0.0f, -1.0f, 0.0f
     };
 
     // generate VAO
@@ -70,34 +111,24 @@ void CApp::VertexSpecification()
     glBindBuffer(GL_ARRAY_BUFFER, gVertexBufferObject);
     glBufferData(GL_ARRAY_BUFFER, vertexData.size() * sizeof(GLfloat), vertexData.data(), GL_STATIC_DRAW);
 
-    // generate and set up index buffer
-    const std::vector<GLuint> indexBufferData{ 2, 0, 1, 3, 2, 1,
-                                               1, 4, 5, 3, 1, 5,
-                                               5, 4, 7, 6, 5, 7,
-                                               7, 0, 2, 6, 7, 2,
-                                               2, 3, 5, 6, 2, 5,
-                                               0, 7, 4, 1, 0, 4 };
-
-    glGenBuffers(1, &gIndexBufferObject);
-    glBindBuffer(GL_ELEMENT_ARRAY_BUFFER, gIndexBufferObject);
-    glBufferData(GL_ELEMENT_ARRAY_BUFFER, indexBufferData.size() * sizeof(GLuint), indexBufferData.data(), GL_STATIC_DRAW);
-
-    //set up VAO 
-    glVertexAttribPointer(0, 3, GL_FLOAT, GL_FALSE, sizeof(GLfloat) * 3, (void*)0);
+    // set up VAO
+    glVertexAttribPointer(0, 3, GL_FLOAT, GL_FALSE, sizeof(GLfloat) * 6, (void*)0);
     glEnableVertexAttribArray(0);
+    glVertexAttribPointer(1, 3, GL_FLOAT, GL_FALSE, sizeof(GLfloat) * 6, (void*)(3 * sizeof(GLfloat)));
+    glEnableVertexAttribArray(1);
     glBindVertexArray(0);
-    //glDisableVertexAttribArray(0);
+    glDisableVertexAttribArray(0);
+    glDisableVertexAttribArray(1);
 
-
-    //set up lightVAO
+    // set up lightVAO
     glGenVertexArrays(1, &lightVAO);
     glBindVertexArray(lightVAO);
-    glBindBuffer(GL_ARRAY_BUFFER, gVertexBufferObject);                                 //connect VBO. Working without it. Why?
-    glBindBuffer(GL_ELEMENT_ARRAY_BUFFER, gIndexBufferObject);                          //connect IBO                  
-    glVertexAttribPointer(0, 3, GL_FLOAT, GL_FALSE, sizeof(GLfloat) * 3, (void*)0);
+    glBindBuffer(GL_ARRAY_BUFFER, gVertexBufferObject);
+
+    glVertexAttribPointer(0, 3, GL_FLOAT, GL_FALSE, sizeof(GLfloat) * 6, (void*)0);
     glEnableVertexAttribArray(0);
     glBindVertexArray(0);
-    //glDisableVertexAttribArray(0);
+    glDisableVertexAttribArray(0);
 }
 
 GLuint CApp::CompileShader(GLuint type, const std::string& source)

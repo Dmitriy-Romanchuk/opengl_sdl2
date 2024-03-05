@@ -30,7 +30,7 @@ public:
     GLuint lightVAO = 0;
     
 
-    bool m_needRotate = true;
+    bool m_needRotate = false;
 
 public:
     CApp();
@@ -50,7 +50,7 @@ public:
 
     std::string LoadShaderAsString(const std::string& filename);
 
-    GLuint gIndexBufferObject = 0;
+    //GLuint gIndexBufferObject = 0;
 
     void OnEvent(SDL_Event* Event);
 

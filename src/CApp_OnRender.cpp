@@ -16,17 +16,23 @@ void CApp::OnRender()
     }
     glm::vec3 objectColor = { 1.0f, 0.5f, 0.31f };
     glm::vec3 lightColor = { 1.0f, 1.0f, 1.0f };
+    glm::vec3 lightPos = { 0.3f, 0.9f, -2.0f };
 
     GLint objectColorLoc = glGetUniformLocation(m_shaderProgram, "objectColor");
     GLint lightColorLoc = glGetUniformLocation(m_shaderProgram, "lightColor");
+    GLint lightPosLoc = glGetUniformLocation(m_shaderProgram, "lightPos");
+    GLint viewPosLoc = glGetUniformLocation(m_shaderProgram, "viewPos");
+
     glUniform3f(objectColorLoc, objectColor.r, objectColor.g, objectColor.b);
     glUniform3f(lightColorLoc, lightColor.r, lightColor.g, lightColor.b);
+    glUniform3f(lightPosLoc, lightPos.x, lightPos.y, lightPos.z);
+    glUniform3f(viewPosLoc, gCamera.Position().x, gCamera.Position().y, gCamera.Position().z);
 
+    glm::mat4 view = gCamera.GetViewMatrix();
     glm::mat4 model = glm::translate(glm::mat4(1.0f), glm::vec3(-0.5f, 0.0f, g_uOffset));
     model = glm::rotate(model, glm::radians(g_uRotate), glm::vec3(0.0f, 1.0f, 0.0f));
     model = glm::scale(model, glm::vec3(g_uScale, g_uScale, g_uScale));
 
-    glm::mat4 view = gCamera.GetViewMatrix();
     glm::mat4 perspective = glm::perspective(glm::radians(45.0f), (float)gScreenWidth / (float)gScreenHeight, 0.1f, 10.0f);
 
     GLint u_ModelMatrixLocation = glGetUniformLocation(m_shaderProgram, "u_ModelMatrix");
@@ -40,16 +46,13 @@ void CApp::OnRender()
     // glPolygonMode(GL_FRONT_AND_BACK, GL_LINE); //for wireframe render
 
     glBindVertexArray(gVertexArrayObject);
-    glDrawElements(GL_TRIANGLES, 36, GL_UNSIGNED_INT, 0);
+    glDrawArrays(GL_TRIANGLES, 0, 36);
     glBindVertexArray(0);
-    //glUseProgram(0);
 
     //--------------------------------------------------------------------------------
     // drawing the small light cube
     glUseProgram(m_lampShaderProgram);
 
-    glm::vec3 lightPos(0.3f, 0.9f, -2.0f);
-    
     model = glm::mat4(1.0f);
     model = glm::translate(model, lightPos);
     model = glm::scale(model, glm::vec3(0.2f));
@@ -63,9 +66,8 @@ void CApp::OnRender()
     glUniformMatrix4fv(u_ModelMatrixLocation, 1, GL_FALSE, &model[0][0]);
 
     glBindVertexArray(lightVAO);
-    glDrawElements(GL_TRIANGLES, 36, GL_UNSIGNED_INT, 0);
+    glDrawArrays(GL_TRIANGLES, 0, 36);
     glBindVertexArray(0);
-    //glUseProgram(0);
-    
+
     SDL_GL_SwapWindow(Surf_Display);
 }

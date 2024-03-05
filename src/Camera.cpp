@@ -2,7 +2,7 @@
 
 Camera::Camera()
 {
-    mEye = glm::vec3(0.0f, 0.6f, 0.0f);
+    mEye = glm::vec3(0.0f, 0.8f, 0.0f);
     mViewDirection = glm::vec3(0.0f, 0.0f, -1.0f);
     mUpVector = glm::vec3(0.0f, 1.0f, 0.0f);
 }
@@ -10,6 +10,11 @@ Camera::Camera()
 glm::mat4 Camera::GetViewMatrix() const
 {
     return glm::lookAt(mEye, mEye + mViewDirection, mUpVector);
+}
+
+glm::vec3 Camera::Position() const
+{
+    return mEye;
 }
 
 void Camera::MouseLook(int mouseX, int mouseY)

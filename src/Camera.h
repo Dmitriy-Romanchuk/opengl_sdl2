@@ -8,6 +8,7 @@ public:
     Camera();
 public:
     glm::mat4 GetViewMatrix() const;
+    glm::vec3 Position() const;
 
     void MouseLook(int mouseX, int mouseY);
     void MoveForvard(float speed);
