@@ -1,6 +1,6 @@
-#include "CApp.h"
+#include "application.h"
 
-void CApp::OnEvent(SDL_Event* Event)
+void Application::OnEvent(SDL_Event* Event)
 {
     float speed = 0.5f;
     // static int mouseX = gScreenWidth / 2;

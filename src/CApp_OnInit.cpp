@@ -1,11 +1,11 @@
-#include "CApp.h"
+#include "application.h"
 #include <SOIL/SOIL.h>
 #include <fstream>
 #include <iostream>
 #include <string>
 #include <vector>
 
-bool CApp::OnInit()
+bool Application::OnInit()
 {
     if (SDL_Init(SDL_INIT_EVERYTHING) < 0)
     {
@@ -40,7 +40,7 @@ bool CApp::OnInit()
     return true;
 }
 
-void CApp::VertexSpecification()
+void Application::VertexSpecification()
 {
     const std::vector<GLfloat> vertexData{
         // 0 vertex
@@ -131,7 +131,7 @@ void CApp::VertexSpecification()
     glDisableVertexAttribArray(0);
 }
 
-GLuint CApp::CompileShader(GLuint type, const std::string& source)
+GLuint Application::CompileShader(GLuint type, const std::string& source)
 {
     GLuint shaderObject;
     if (type == GL_VERTEX_SHADER)
@@ -150,7 +150,7 @@ GLuint CApp::CompileShader(GLuint type, const std::string& source)
     return shaderObject;
 }
 
-std::string CApp::LoadShaderAsString(const std::string& filename)
+std::string Application::LoadShaderAsString(const std::string& filename)
 {
     std::string result = "";
     std::string line = "";
@@ -167,7 +167,7 @@ std::string CApp::LoadShaderAsString(const std::string& filename)
     return result;
 }
 
-GLuint CApp::CreateShaderProgram(const std::string& vertexshadersource, const std::string& fragmentshadersource)
+GLuint Application::CreateShaderProgram(const std::string& vertexshadersource, const std::string& fragmentshadersource)
 {
     GLuint myVertexShader = CompileShader(GL_VERTEX_SHADER, vertexshadersource);
     GLuint myFragmentShader = CompileShader(GL_FRAGMENT_SHADER, fragmentshadersource);
@@ -182,7 +182,7 @@ GLuint CApp::CreateShaderProgram(const std::string& vertexshadersource, const st
     return programObject;
 }
 
-void CApp::CreateGraphicsPiepline()
+void Application::CreateGraphicsPiepline()
 {
     std::string vertexShaderSource = LoadShaderAsString("D:/learn/c++/opengl_sdl2/shaders/vert.glsl");
     std::string fragmentShaderSource = LoadShaderAsString("D:/learn/c++/opengl_sdl2/shaders/frag.glsl");

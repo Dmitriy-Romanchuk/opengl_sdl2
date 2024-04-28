@@ -1,6 +1,6 @@
-#include "CApp.h"
+#include "application.h"
  
-void CApp::OnCleanup() 
+void Application::OnCleanup() 
 {
     //SOIL_free_image_data(image);
     //glBindTexture(GL_TEXTURE_2D, 0);

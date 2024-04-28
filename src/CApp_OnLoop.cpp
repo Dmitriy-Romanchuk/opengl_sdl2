@@ -1,5 +1,5 @@
-#include "CApp.h"
+#include "application.h"
 
-void CApp::OnLoop()
+void Application::OnLoop()
 {
 }

@@ -1,6 +1,6 @@
 #include <Camera.h>
 #include <GL/glew.h>
-#include <SDL2/SDL.h>
+//#include <SDL2/SDL.h>
 #include <SOIL/SOIL.h>
 #include <glm/glm.hpp>
 #include <glm/gtc/matrix_transform.hpp>
@@ -9,12 +9,12 @@
 #include <iostream>
 #include <string>
 
-class CApp
+class Application
 {
 public:
     bool Running;
-    SDL_Window* Surf_Display;
-    SDL_GLContext gOpenGLContext = nullptr;
+    //SDL_Window* Surf_Display;
+    //SDL_GLContext gOpenGLContext = nullptr;
     GLuint gVertexArrayObject = 0;
     GLuint gVertexBufferObject = 0;
     GLuint m_shaderProgram = 0;
@@ -29,13 +29,13 @@ public:
     GLuint texture;
     GLuint lightVAO = 0;
     
-
     bool m_needRotate = false;
 
 public:
-    CApp();
-
-    int OnExecute();
+    Application()
+    {
+        Running = true;
+    }
 
 public:
     bool OnInit();
@@ -60,11 +60,11 @@ public:
 
     void OnCleanup();
 
-    void GetOpenGLVersionInfo()
-    {
-        std::cout << "Vendor: " << glGetString(GL_VENDOR) << std::endl;
-        std::cout << "Renderer: " << glGetString(GL_RENDERER) << std::endl;
-        std::cout << "Version: " << glGetString(GL_VERSION) << std::endl;
-        std::cout << "Shading Language: " << glGetString(GL_SHADING_LANGUAGE_VERSION) << std::endl;
-    }
+//    void GetOpenGLVersionInfo()
+//    {
+//        std::cout << "Vendor: " << glGetString(GL_VENDOR) << std::endl;
+//        std::cout << "Renderer: " << glGetString(GL_RENDERER) << std::endl;
+//        std::cout << "Version: " << glGetString(GL_VERSION) << std::endl;
+//        std::cout << "Shading Language: " << glGetString(GL_SHADING_LANGUAGE_VERSION) << std::endl;
+//    }
 };

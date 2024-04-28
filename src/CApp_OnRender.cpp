@@ -1,6 +1,6 @@
-#include "CApp.h"
+#include "application.h"
 
-void CApp::OnRender()
+void Application::OnRender()
 {
     glUseProgram(m_shaderProgram);
     glEnable(GL_DEPTH_TEST);

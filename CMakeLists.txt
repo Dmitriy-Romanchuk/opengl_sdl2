@@ -30,7 +30,7 @@ SET(LINKER_FLAGS "-Wall -lmingw32 -lSDL2main -lSDL2")
 SET(CMAKE_CXX_FLAGS "${CMAKE_CXX_FLAGS} ${LINKER_FLAGS}")
 
 set(SOURCE
-    ${CMAKE_CURRENT_SOURCE_DIR}/src/CApp.cpp
+    ${CMAKE_CURRENT_SOURCE_DIR}/src/main.cpp
     ${CMAKE_CURRENT_SOURCE_DIR}/src/CApp_OnInit.cpp
     ${CMAKE_CURRENT_SOURCE_DIR}/src/CApp_OnEvent.cpp
     ${CMAKE_CURRENT_SOURCE_DIR}/src/CApp_OnLoop.cpp
