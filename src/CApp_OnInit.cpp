@@ -27,7 +27,7 @@ bool Application::OnInit()
     {
         std::cout << ("Error in glewInit\n");
 
-        return 1;
+        return false;
     }
 
     GetOpenGLVersionInfo();

@@ -1,4 +1,5 @@
 #include <Camera.h>
+
 #include <GL/glew.h>
 //#include <SDL2/SDL.h>
 #include <SOIL/SOIL.h>
@@ -6,13 +7,18 @@
 #include <glm/gtc/matrix_transform.hpp>
 #include <glm/mat4x4.hpp>
 #include <glm/vec3.hpp>
+
 #include <iostream>
 #include <string>
+#include <memory>
+
+class Page;
+class RenderDevice;
 
 class Application
 {
 public:
-    bool Running;
+    bool m_isRunning;
     //SDL_Window* Surf_Display;
     //SDL_GLContext gOpenGLContext = nullptr;
     GLuint gVertexArrayObject = 0;
@@ -32,14 +38,25 @@ public:
     bool m_needRotate = false;
 
 public:
-    Application()
-    {
-        Running = true;
-    }
+    Application();
 
 public:
-    bool OnInit();
+    bool init();
+    void run();
+    void destroy();
 
+private:
+    void proccessInput();
+    void update(float dt);
+    void render();
+
+private:
+    bool m_isRunning = false;
+    Page* m_currentPage = nullptr;
+    std::unique_ptr<RenderDevice> m_renderDevice;
+
+/////////////////////////////////////////////////
+private:
     void VertexSpecification();
 
     void CreateGraphicsPiepline();
