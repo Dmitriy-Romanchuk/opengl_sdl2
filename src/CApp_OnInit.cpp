@@ -19,8 +19,8 @@ bool Application::OnInit()
     SDL_GL_SetAttribute(SDL_GL_DOUBLEBUFFER, 1);
     SDL_GL_SetAttribute(SDL_GL_DEPTH_SIZE, 24);
 
-    Surf_Display = SDL_CreateWindow("OpenGL Window", SDL_WINDOWPOS_CENTERED_MASK, SDL_WINDOWPOS_CENTERED_MASK, gScreenWidth, gScreenHeight, SDL_WINDOW_OPENGL | SDL_WINDOW_RESIZABLE);
-    gOpenGLContext = SDL_GL_CreateContext(Surf_Display);
+    Display = SDL_CreateWindow("OpenGL Window", SDL_WINDOWPOS_CENTERED_MASK, SDL_WINDOWPOS_CENTERED_MASK, gScreenWidth, gScreenHeight, SDL_WINDOW_OPENGL | SDL_WINDOW_RESIZABLE);
+    gOpenGLContext = SDL_GL_CreateContext(Display);
 
     // glew initialize;
     if (glewInit() != GLEW_OK)
@@ -34,7 +34,7 @@ bool Application::OnInit()
     VertexSpecification();
     CreateGraphicsPiepline();
 
-    SDL_WarpMouseInWindow(Surf_Display, gScreenWidth / 2, gScreenHeight / 2);
+    SDL_WarpMouseInWindow(Display, gScreenWidth / 2, gScreenHeight / 2);
     SDL_SetRelativeMouseMode(SDL_TRUE);
 
     return true;

@@ -69,5 +69,5 @@ void Application::OnRender()
     glDrawArrays(GL_TRIANGLES, 0, 36);
     glBindVertexArray(0);
 
-    SDL_GL_SwapWindow(Surf_Display);
+    SDL_GL_SwapWindow(Display);
 }

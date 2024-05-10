@@ -1,4 +1,4 @@
-#include "application.h"
+#include "Application.h"
 
 #include "Page.hpp"
 
@@ -52,5 +52,5 @@ void Application::update(float dt)
 void Application::render()
 {
     m_currentPage->render(m_renderDevice);
-    SDL_GL_SwapWindow(Surf_Display);
+    SDL_GL_SwapWindow(Display);
 }

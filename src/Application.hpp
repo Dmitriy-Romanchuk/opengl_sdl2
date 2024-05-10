@@ -12,6 +12,7 @@
 #include <string>
 #include <memory>
 
+class Window;
 class Page;
 class RenderDevice;
 
@@ -19,7 +20,7 @@ class Application
 {
 public:
     bool m_isRunning;
-    //SDL_Window* Surf_Display;
+    //SDL_Window* Display;
     //SDL_GLContext gOpenGLContext = nullptr;
     GLuint gVertexArrayObject = 0;
     GLuint gVertexBufferObject = 0;

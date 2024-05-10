@@ -1,8 +1,8 @@
-#include "main_window.h"
+#include "MainWindow.hpp"
 #include <GL/glew.h>
 #include <iostream>
 
-bool main_window::Init()
+bool Window::InitSDL()
 {
     if (SDL_Init(SDL_INIT_EVERYTHING) < 0)
     {
@@ -15,32 +15,31 @@ bool main_window::Init()
     SDL_GL_SetAttribute(SDL_GL_CONTEXT_PROFILE_MASK, SDL_GL_CONTEXT_PROFILE_CORE);
     SDL_GL_SetAttribute(SDL_GL_DOUBLEBUFFER, 1);
     SDL_GL_SetAttribute(SDL_GL_DEPTH_SIZE, 24);
+    return true;
+}
 
-    Surf_Display = SDL_CreateWindow("OpenGL Window", SDL_WINDOWPOS_CENTERED_MASK, SDL_WINDOWPOS_CENTERED_MASK, gScreenWidth, gScreenHeight, SDL_WINDOW_OPENGL | SDL_WINDOW_RESIZABLE);
-    gOpenGLContext = SDL_GL_CreateContext(Surf_Display);
-
-    // glew initialize;
+bool Window::InitGLEW()
+{
     if (glewInit() != GLEW_OK)
     {
         std::cout << ("Error in glewInit\n");
-
-        return 1;
+        return false;
     }
+    return true;
+}
 
-    GetOpenGLVersionInfo();
+bool Window::Render()
+{
+    Display = SDL_CreateWindow("OpenGL Window", SDL_WINDOWPOS_CENTERED_MASK, SDL_WINDOWPOS_CENTERED_MASK, ScreenWidth, ScreenHeight, SDL_WINDOW_OPENGL | SDL_WINDOW_RESIZABLE);
+    gOpenGLContext = SDL_GL_CreateContext(Display);
 
-    SDL_WarpMouseInWindow(Surf_Display, gScreenWidth / 2, gScreenHeight / 2);
+    SDL_WarpMouseInWindow(Display, ScreenWidth / 2, ScreenHeight / 2);
     SDL_SetRelativeMouseMode(SDL_TRUE);
 
     return true;
 }
 
-void main_window::Render()
-{
-    return true;
-}
-
-void main_window::GetOpenGLVersionInfo()
+void Window::GetOpenGLVersionInfo()
 {
     std::cout << "Vendor: " << glGetString(GL_VENDOR) << std::endl;
     std::cout << "Renderer: " << glGetString(GL_RENDERER) << std::endl;
@@ -48,10 +47,10 @@ void main_window::GetOpenGLVersionInfo()
     std::cout << "Shading Language: " << glGetString(GL_SHADING_LANGUAGE_VERSION) << std::endl;
 }
 
-main_window::main_window(/* args */)
+Window::Window()
 {
 }
 
-main_window::~main_window()
+Window::~Window()
 {
 }
