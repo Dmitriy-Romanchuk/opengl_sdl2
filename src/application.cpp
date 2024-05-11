@@ -1,4 +1,4 @@
-#include "Application.h"
+#include "Application.hpp"
 
 #include "Page.hpp"
 
@@ -7,7 +7,7 @@
 Application::Application()
     : m_isRunning(true)
 {
-    m_renderDevice = std::make_unique<RenderDevice>(new RenderDevice());
+    m_renderDevice = std::make_unique<RenderDevice>m_RenderDevice;
 }
 
 bool Application::init()
@@ -38,10 +38,11 @@ bool Application::proccessInput()
 {
     SDL_Event event;
 
-    while (counter > 0 && SDL_PollEvent(&event))
+    while (SDL_PollEvent(&event))
     {
         m_currentPage->onInput(event);
     }
+    return true;
 }
 
 void Application::update(float dt)
@@ -52,5 +53,6 @@ void Application::update(float dt)
 void Application::render()
 {
     m_currentPage->render(m_renderDevice);
-    SDL_GL_SwapWindow(Display);
+    SDL_GL_SwapWindow(Window::Display);
 }
+

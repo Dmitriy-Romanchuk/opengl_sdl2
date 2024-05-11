@@ -1,7 +1,6 @@
 #pragma once
 
 #include <string>
-#include <format>
 
 class Application;
 
@@ -26,7 +25,7 @@ public:
     };
 
 public:
-    virtual void onInput(const std::string& input) = 0;
+    virtual void onInput(const SDL_Event& input) = 0;
     virtual void update(float dt) = 0;
     virtual void render(std::string& buff) = 0;
 };

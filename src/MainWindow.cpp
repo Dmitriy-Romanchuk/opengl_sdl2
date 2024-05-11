@@ -2,7 +2,7 @@
 #include <GL/glew.h>
 #include <iostream>
 
-bool Window::InitSDL()
+bool Window::Init()
 {
     if (SDL_Init(SDL_INIT_EVERYTHING) < 0)
     {
@@ -15,23 +15,19 @@ bool Window::InitSDL()
     SDL_GL_SetAttribute(SDL_GL_CONTEXT_PROFILE_MASK, SDL_GL_CONTEXT_PROFILE_CORE);
     SDL_GL_SetAttribute(SDL_GL_DOUBLEBUFFER, 1);
     SDL_GL_SetAttribute(SDL_GL_DEPTH_SIZE, 24);
-    return true;
-}
 
-bool Window::InitGLEW()
-{
+    Display = SDL_CreateWindow("OpenGL Window", SDL_WINDOWPOS_CENTERED_MASK, SDL_WINDOWPOS_CENTERED_MASK, ScreenWidth, ScreenHeight, SDL_WINDOW_OPENGL | SDL_WINDOW_RESIZABLE);
+    OpenGLContext = SDL_GL_CreateContext(Display);
+
+    // glew initialize;
     if (glewInit() != GLEW_OK)
     {
         std::cout << ("Error in glewInit\n");
+
         return false;
     }
-    return true;
-}
 
-bool Window::Render()
-{
-    Display = SDL_CreateWindow("OpenGL Window", SDL_WINDOWPOS_CENTERED_MASK, SDL_WINDOWPOS_CENTERED_MASK, ScreenWidth, ScreenHeight, SDL_WINDOW_OPENGL | SDL_WINDOW_RESIZABLE);
-    gOpenGLContext = SDL_GL_CreateContext(Display);
+    GetOpenGLVersionInfo();
 
     SDL_WarpMouseInWindow(Display, ScreenWidth / 2, ScreenHeight / 2);
     SDL_SetRelativeMouseMode(SDL_TRUE);

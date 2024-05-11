@@ -1,7 +1,7 @@
 #include <Camera.h>
+#include "MainWindow.hpp"
 
 #include <GL/glew.h>
-//#include <SDL2/SDL.h>
 #include <SOIL/SOIL.h>
 #include <glm/glm.hpp>
 #include <glm/gtc/matrix_transform.hpp>
@@ -12,7 +12,6 @@
 #include <string>
 #include <memory>
 
-class Window;
 class Page;
 class RenderDevice;
 
@@ -20,8 +19,6 @@ class Application
 {
 public:
     bool m_isRunning;
-    //SDL_Window* Display;
-    //SDL_GLContext gOpenGLContext = nullptr;
     GLuint gVertexArrayObject = 0;
     GLuint gVertexBufferObject = 0;
     GLuint m_shaderProgram = 0;
@@ -30,8 +27,6 @@ public:
     float g_uOffset = -3.0f;
     float g_uRotate = 0.0f;
     float g_uScale = 0.5f;
-    int gScreenWidth = 800;
-    int gScreenHeight = 800;
     Camera gCamera;
     GLuint texture;
     GLuint lightVAO = 0;
@@ -47,7 +42,7 @@ public:
     void destroy();
 
 private:
-    void proccessInput();
+    bool proccessInput();
     void update(float dt);
     void render();
 
@@ -70,7 +65,7 @@ private:
 
     //GLuint gIndexBufferObject = 0;
 
-    void OnEvent(SDL_Event* Event);
+    //void OnEvent(SDL_Event* Event);
 
     void OnLoop();
 
@@ -78,11 +73,4 @@ private:
 
     void OnCleanup();
 
-//    void GetOpenGLVersionInfo()
-//    {
-//        std::cout << "Vendor: " << glGetString(GL_VENDOR) << std::endl;
-//        std::cout << "Renderer: " << glGetString(GL_RENDERER) << std::endl;
-//        std::cout << "Version: " << glGetString(GL_VERSION) << std::endl;
-//        std::cout << "Shading Language: " << glGetString(GL_SHADING_LANGUAGE_VERSION) << std::endl;
-//    }
 };
