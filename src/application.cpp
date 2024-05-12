@@ -1,17 +1,16 @@
 #include "Application.hpp"
 
-#include "Page.hpp"
-
 #include <SDL2/SDL.h>
 
 Application::Application()
     : m_isRunning(true)
 {
-    m_renderDevice = std::make_unique<RenderDevice>m_RenderDevice;
+    m_renderDevice = std::make_unique<RenderDevice>(m_renderDevice);
 }
 
 bool Application::init()
 {
+    window.Init();
     return false;
 }
 
@@ -32,8 +31,6 @@ void Application::run()
     }
 }
 
-
-
 bool Application::proccessInput()
 {
     SDL_Event event;
@@ -52,7 +49,6 @@ void Application::update(float dt)
 
 void Application::render()
 {
-    m_currentPage->render(m_renderDevice);
-    SDL_GL_SwapWindow(Window::Display);
+    // m_currentPage->render(m_renderDevice);
+    SDL_GL_SwapWindow(window.m_display);
 }
-

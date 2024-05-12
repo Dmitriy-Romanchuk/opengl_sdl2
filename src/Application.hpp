@@ -1,5 +1,7 @@
-#include <Camera.h>
+//#include <Camera.h>
 #include "MainWindow.hpp"
+#include "pages/Page.hpp"
+#include "RenderDevice/RenderDevice.hpp"
 
 #include <GL/glew.h>
 #include <SOIL/SOIL.h>
@@ -11,9 +13,6 @@
 #include <iostream>
 #include <string>
 #include <memory>
-
-class Page;
-class RenderDevice;
 
 class Application
 {
@@ -27,9 +26,10 @@ public:
     float g_uOffset = -3.0f;
     float g_uRotate = 0.0f;
     float g_uScale = 0.5f;
-    Camera gCamera;
+    //Camera gCamera;
     GLuint texture;
     GLuint lightVAO = 0;
+    Window window;
     
     bool m_needRotate = false;
 
@@ -47,7 +47,6 @@ private:
     void render();
 
 private:
-    bool m_isRunning = false;
     Page* m_currentPage = nullptr;
     std::unique_ptr<RenderDevice> m_renderDevice;
 

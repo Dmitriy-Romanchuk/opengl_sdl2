@@ -2,15 +2,13 @@
 
 #include <string>
 
-class Application;
+#include "Application.hpp"
 
 class Page
 {
 public:
     enum class Type
     {
-        Splash,
-        Lobby,
         Game
     };
 
@@ -27,5 +25,5 @@ public:
 public:
     virtual void onInput(const SDL_Event& input) = 0;
     virtual void update(float dt) = 0;
-    virtual void render(std::string& buff) = 0;
+    virtual void render() = 0;
 };
