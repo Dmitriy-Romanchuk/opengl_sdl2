@@ -33,7 +33,7 @@ set(SOURCE
     ${CMAKE_CURRENT_SOURCE_DIR}/src/main.cpp
     ${CMAKE_CURRENT_SOURCE_DIR}/src/MainWindow.cpp
     ${CMAKE_CURRENT_SOURCE_DIR}/src/Application.cpp
-    #${CMAKE_CURRENT_SOURCE_DIR}/src/CApp_OnEvent.cpp
+    ${CMAKE_CURRENT_SOURCE_DIR}/src/RenderDevice/RenderDevice.cpp
     #${CMAKE_CURRENT_SOURCE_DIR}/src/CApp_OnLoop.cpp
     #${CMAKE_CURRENT_SOURCE_DIR}/src/CApp_OnRender.cpp
     #${CMAKE_CURRENT_SOURCE_DIR}/src/CApp_OnCleanup.cpp

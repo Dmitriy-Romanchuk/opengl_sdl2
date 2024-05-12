@@ -1,5 +1,4 @@
 #include "Application.hpp"
-#include "MainWindow.hpp"
 
 int main(int argc, char* argv[])
 {

@@ -5,7 +5,7 @@
 Application::Application()
     : m_isRunning(true)
 {
-    m_renderDevice = std::make_unique<RenderDevice>(m_renderDevice);
+    //m_renderDevice = std::make_unique<RenderDevice>(m_renderDevice);
 }
 
 bool Application::init()
@@ -16,7 +16,7 @@ bool Application::init()
 
 void Application::destroy()
 {
-    m_renderDevice.reset();
+    //m_renderDevice.reset();
     // destroy impl
 }
 
@@ -37,14 +37,14 @@ bool Application::proccessInput()
 
     while (SDL_PollEvent(&event))
     {
-        m_currentPage->onInput(event);
+        //m_currentPage->onInput(event);
     }
     return true;
 }
 
 void Application::update(float dt)
 {
-    m_currentPage->update(dt);
+    //m_currentPage->update(dt);
 }
 
 void Application::render()

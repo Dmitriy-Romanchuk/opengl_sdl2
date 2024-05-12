@@ -47,8 +47,8 @@ private:
     void render();
 
 private:
-    Page* m_currentPage = nullptr;
-    std::unique_ptr<RenderDevice> m_renderDevice;
+    //Page* m_currentPage = nullptr;
+    //std::unique_ptr<RenderDevice> m_renderDevice;
 
 /////////////////////////////////////////////////
 private:

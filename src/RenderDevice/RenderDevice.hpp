@@ -17,11 +17,3 @@ public:
     void draw(Vertex vertexBuffer[], uint32_t indexBuffer[]);
 
 };
-
-RenderDevice::RenderDevice()
-{
-}
-
-RenderDevice::~RenderDevice()
-{
-}
