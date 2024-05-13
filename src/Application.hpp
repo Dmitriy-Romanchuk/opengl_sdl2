@@ -32,6 +32,9 @@ public:
     Window window;
     
     bool m_needRotate = false;
+    SDL_Event event;
+
+
 
 public:
     Application();
@@ -47,7 +50,8 @@ private:
     void render();
 
 private:
-    //Page* m_currentPage = nullptr;
+    const Uint8* state = SDL_GetKeyboardState(NULL);
+    Page* m_currentPage = nullptr;
     //std::unique_ptr<RenderDevice> m_renderDevice;
 
 /////////////////////////////////////////////////

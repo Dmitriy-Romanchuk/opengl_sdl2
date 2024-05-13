@@ -5,19 +5,18 @@
 Application::Application()
     : m_isRunning(true)
 {
-    //m_renderDevice = std::make_unique<RenderDevice>(m_renderDevice);
+    // m_renderDevice = std::make_unique<RenderDevice>(m_renderDevice);
 }
 
 bool Application::init()
 {
-    window.Init();
-    return false;
+    return window.Init();
 }
 
 void Application::destroy()
 {
-    //m_renderDevice.reset();
-    // destroy impl
+    // m_renderDevice.reset();
+    //  destroy impl
 }
 
 void Application::run()
@@ -33,18 +32,20 @@ void Application::run()
 
 bool Application::proccessInput()
 {
-    SDL_Event event;
-
     while (SDL_PollEvent(&event))
     {
-        //m_currentPage->onInput(event);
+        if (state[SDL_SCANCODE_ESCAPE])
+        {
+            m_isRunning = false;
+        }
+        // m_currentPage->onInput(event);
     }
     return true;
 }
 
 void Application::update(float dt)
 {
-    //m_currentPage->update(dt);
+    // m_currentPage->update(dt);
 }
 
 void Application::render()
