@@ -30,7 +30,7 @@ bool Window::Init()
     GetOpenGLVersionInfo();
 
     SDL_WarpMouseInWindow(m_display, ScreenWidth / 2, ScreenHeight / 2);
-    SDL_SetRelativeMouseMode(SDL_TRUE);
+    //SDL_SetRelativeMouseMode(SDL_TRUE); // What is this?
 
     return true;
 }

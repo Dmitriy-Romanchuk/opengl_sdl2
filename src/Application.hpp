@@ -1,7 +1,7 @@
-//#include <Camera.h>
+// #include <Camera.h>
 #include "MainWindow.hpp"
-#include "pages/Page.hpp"
 #include "RenderDevice/RenderDevice.hpp"
+#include "pages/Page.hpp"
 
 #include <GL/glew.h>
 #include <SOIL/SOIL.h>
@@ -11,30 +11,28 @@
 #include <glm/vec3.hpp>
 
 #include <iostream>
-#include <string>
 #include <memory>
+#include <string>
 
 class Application
 {
 public:
-    bool m_isRunning;
-    GLuint gVertexArrayObject = 0;
-    GLuint gVertexBufferObject = 0;
+    // NEED ACTUALIZE
+    bool m_needRotate = false;
     GLuint m_shaderProgram = 0;
     GLuint m_lampShaderProgram = 0;
     GLuint vertexbuffer;
     float g_uOffset = -3.0f;
     float g_uRotate = 0.0f;
     float g_uScale = 0.5f;
-    //Camera gCamera;
-    GLuint texture;
     GLuint lightVAO = 0;
+    GLuint texture;
+    // Camera gCamera;
+
+    // ACTUAL VARIABLES
+    bool m_isRunning;
     Window window;
-    
-    bool m_needRotate = false;
     SDL_Event event;
-
-
 
 public:
     Application();
@@ -52,9 +50,9 @@ private:
 private:
     const Uint8* state = SDL_GetKeyboardState(NULL);
     Page* m_currentPage = nullptr;
-    //std::unique_ptr<RenderDevice> m_renderDevice;
+    // std::unique_ptr<RenderDevice> m_renderDevice;
 
-/////////////////////////////////////////////////
+    /////////////////////////////////////////////////
 private:
     void VertexSpecification();
 
@@ -66,9 +64,9 @@ private:
 
     std::string LoadShaderAsString(const std::string& filename);
 
-    //GLuint gIndexBufferObject = 0;
+    // GLuint gIndexBufferObject = 0;
 
-    //void OnEvent(SDL_Event* Event);
+    // void OnEvent(SDL_Event* Event);
 
     void OnLoop();
 
@@ -76,4 +74,5 @@ private:
 
     void OnCleanup();
 
+    Page* createGamePage();
 };
