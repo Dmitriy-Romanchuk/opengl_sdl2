@@ -13,7 +13,7 @@ public:
 public:
     void init();
     void destroy();
-    void draw(std::vector<GLfloat> vertexData);
+    void draw(std::vector<GLfloat> m_vertexData);
 
 public:
     GLuint VertexArrayObject = 0;

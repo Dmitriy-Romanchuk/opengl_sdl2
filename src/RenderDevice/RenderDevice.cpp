@@ -91,8 +91,8 @@ GLuint RenderDevice::CreateShaderProgram(const std::string& vertexshadersource, 
 
 void RenderDevice::CreateGraphicsPiepline()
 {
-    std::string vertexShaderSource = LoadShaderAsString("D:/learn/c++/opengl_sdl2/shaders/vert.glsl");
-    std::string fragmentShaderSource = LoadShaderAsString("D:/learn/c++/opengl_sdl2/shaders/frag.glsl");
+    std::string vertexShaderSource = LoadShaderAsString("C:/Users/37529/Desktop/Dima/C++/opengl_sdl2/shaders/vert.glsl");
+    std::string fragmentShaderSource = LoadShaderAsString("C:/Users/37529/Desktop/Dima/C++/opengl_sdl2/shaders/frag.glsl");
 
     m_shaderProgram = CreateShaderProgram(vertexShaderSource, fragmentShaderSource);
 }
