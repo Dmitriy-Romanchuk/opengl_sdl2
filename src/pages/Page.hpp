@@ -1,7 +1,8 @@
 #pragma once
 
+#include "RenderDevice/RenderDevice.hpp"
+
 #include <memory>
-class Application;
 
 class RenderDevice;
 

@@ -28,7 +28,7 @@ void RenderDevice::draw(GLfloat vertexData[])
     // generate VBO
     glGenBuffers(1, &VertexBufferObject);
     glBindBuffer(GL_ARRAY_BUFFER, VertexBufferObject);
-    //glBufferData(GL_ARRAY_BUFFER, sizeof(vertexData) * sizeof(GLfloat), vertexData, GL_STATIC_DRAW);
+    glBufferData(GL_ARRAY_BUFFER, sizeof(vertexData) * sizeof(GLfloat), vertexData, GL_STATIC_DRAW);
 
     // set up VAO
     glVertexAttribPointer(0, 3, GL_FLOAT, GL_FALSE, sizeof(GLfloat) * 3, (void*)0);
