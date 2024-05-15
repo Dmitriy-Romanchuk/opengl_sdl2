@@ -34,7 +34,8 @@ set(SOURCE
     ${CMAKE_CURRENT_SOURCE_DIR}/src/MainWindow.cpp
     ${CMAKE_CURRENT_SOURCE_DIR}/src/Application.cpp
     ${CMAKE_CURRENT_SOURCE_DIR}/src/RenderDevice/RenderDevice.cpp
-    ${CMAKE_CURRENT_SOURCE_DIR}/src/pages/GamePage.cpp
+    ${CMAKE_CURRENT_SOURCE_DIR}/src/Pages/GamePage.cpp
+    ${CMAKE_CURRENT_SOURCE_DIR}/src/GameObjects/Player.cpp
 )
 
 add_executable(app ${SOURCE})

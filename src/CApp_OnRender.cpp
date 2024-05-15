@@ -3,12 +3,7 @@
 void Application::OnRender()
 {
     glUseProgram(m_shaderProgram);
-    glEnable(GL_DEPTH_TEST);
-    glDisable(GL_CULL_FACE);
 
-    glViewport(0, 0, 800, 800);
-    glClearColor(0.1f, 0.1f, 0.1f, 1.0f);
-    glClear(GL_DEPTH_BUFFER_BIT | GL_COLOR_BUFFER_BIT);
 
     if (m_needRotate == true)
     {
@@ -69,5 +64,4 @@ void Application::OnRender()
     glDrawArrays(GL_TRIANGLES, 0, 36);
     glBindVertexArray(0);
 
-    SDL_GL_SwapWindow(Display);
 }

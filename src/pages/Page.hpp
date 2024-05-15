@@ -1,6 +1,9 @@
 #pragma once
 
-#include <string>
+#include <memory>
+class Application;
+
+class RenderDevice;
 
 class Page
 {
@@ -23,5 +26,5 @@ public:
 public:
     virtual void onInput(/*const SDL_Event& input*/) = 0;
     virtual void update(float dt) = 0;
-    virtual void render() = 0;
+    virtual void render(const std::unique_ptr<RenderDevice>& m_renderDevice) = 0;
 };

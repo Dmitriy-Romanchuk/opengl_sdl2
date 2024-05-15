@@ -1,4 +1,6 @@
-#include "GamePage.hpp"
+#include "Pages/GamePage.hpp"
+//#include "GameObjects/Player.hpp"
+#include "RenderDevice/RenderDevice.hpp"
 
 Page::Type GamePage::getPageType() const
 {
@@ -13,10 +15,7 @@ void GamePage::update(float dt)
 {
 }
 
-void GamePage::render()
+void GamePage::render(const std::unique_ptr<RenderDevice>& m_renderDevice)
 {
-}
-
-void GamePage::VertexSpecification()
-{
+    //m_renderDevice->draw(m_square->getVertexSpecification());
 }

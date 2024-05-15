@@ -16,7 +16,8 @@ bool Window::Init()
     SDL_GL_SetAttribute(SDL_GL_DOUBLEBUFFER, 1);
     SDL_GL_SetAttribute(SDL_GL_DEPTH_SIZE, 24);
 
-    m_display = SDL_CreateWindow("OpenGL Window", SDL_WINDOWPOS_CENTERED_MASK, SDL_WINDOWPOS_CENTERED_MASK, ScreenWidth, ScreenHeight, SDL_WINDOW_OPENGL | SDL_WINDOW_RESIZABLE);
+    m_display = SDL_CreateWindow("OpenGL Window", SDL_WINDOWPOS_CENTERED_MASK, SDL_WINDOWPOS_CENTERED_MASK,
+                                 ScreenWidth, ScreenHeight, SDL_WINDOW_OPENGL | SDL_WINDOW_RESIZABLE);
     OpenGLContext = SDL_GL_CreateContext(m_display);
 
     // glew initialize;
@@ -30,7 +31,9 @@ bool Window::Init()
     GetOpenGLVersionInfo();
 
     SDL_WarpMouseInWindow(m_display, ScreenWidth / 2, ScreenHeight / 2);
-    //SDL_SetRelativeMouseMode(SDL_TRUE); // What is this?
+    
+    // This function hides basic cursor Windows. Default value is false
+    // SDL_SetRelativeMouseMode(SDL_FALSE);
 
     return true;
 }

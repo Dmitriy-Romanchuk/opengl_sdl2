@@ -1,5 +1,6 @@
 #include "Application.hpp"
-#include "pages/GamePage.hpp"
+#include "Pages/GamePage.hpp"
+
 
 #include <SDL2/SDL.h>
 
@@ -7,7 +8,7 @@ Application::Application()
     : m_isRunning(true)
 {
     m_currentPage = createGamePage();
-    // m_renderDevice = std::make_unique<RenderDevice>(m_renderDevice);
+    m_renderDevice = std::make_unique<RenderDevice>();
 }
 
 bool Application::init()
@@ -17,7 +18,7 @@ bool Application::init()
 
 void Application::destroy()
 {
-    // m_renderDevice.reset();
+    m_renderDevice.reset();
     SDL_Quit();
 }
 
@@ -47,12 +48,18 @@ bool Application::proccessInput()
 
 void Application::update(float dt)
 {
-    // m_currentPage->update(dt);
+    m_currentPage->update(dt);
 }
 
 void Application::render()
 {
-    // m_currentPage->render(m_renderDevice);
+    m_currentPage->render(m_renderDevice);
+    glEnable(GL_DEPTH_TEST);
+    glDisable(GL_CULL_FACE);
+
+    glViewport(0, 0, 800, 800);
+    glClearColor(0.1f, 0.5f, 0.1f, 1.0f);
+    glClear(GL_DEPTH_BUFFER_BIT | GL_COLOR_BUFFER_BIT);
     SDL_GL_SwapWindow(window.m_display);
 }
 

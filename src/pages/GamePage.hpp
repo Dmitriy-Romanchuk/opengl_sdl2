@@ -1,6 +1,8 @@
 #pragma once
 
-#include "pages/Page.hpp"
+#include "Pages/Page.hpp"
+
+class Player;
 
 class GamePage : public Page
 {
@@ -9,8 +11,8 @@ public:
 
     void onInput(/*const SDL_Event& input*/) override;
     void update(float dt) override;
-    void render() override;
+    void render(const std::unique_ptr<RenderDevice>& m_renderDevice) override;
 
 private:
-    void VertexSpecification();
+    Player* m_square;
 };
