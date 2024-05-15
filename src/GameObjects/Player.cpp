@@ -16,7 +16,7 @@ void Player::render()
 {
 }
 
-GLfloat* Player::getVertexSpecification()
+std::vector<GLfloat> Player::getVertexSpecification()
 {
     return m_VertexData;
 }

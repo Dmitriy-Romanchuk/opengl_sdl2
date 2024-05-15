@@ -2,6 +2,7 @@
 
 #include <GL/glew.h>
 #include <string>
+#include <vector>
 
 class RenderDevice
 {
@@ -12,7 +13,7 @@ public:
 public:
     void init();
     void destroy();
-    void draw(GLfloat vertexData[]);
+    void draw(std::vector<GLfloat> vertexData);
 
 public:
     GLuint VertexArrayObject = 0;

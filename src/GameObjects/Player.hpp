@@ -1,11 +1,12 @@
 #pragma once
 
 #include <gl/glew.h>
+#include <vector>
 
 class Player
 {
-private:
-    GLfloat m_VertexData[9] =
+public:
+    const std::vector<GLfloat> m_VertexData
     {
         -0.5f, -0.5f, 0.0f,
          0.5f, -0.5f, 0.0f,
@@ -27,7 +28,7 @@ public:
     void input();
     void update();
     void render();
-    GLfloat* getVertexSpecification();
+    std::vector<GLfloat> getVertexSpecification();
 
 public:
     Player(/* args */);
