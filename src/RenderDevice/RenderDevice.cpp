@@ -1,6 +1,7 @@
 #include "RenderDevice/RenderDevice.hpp"
 
 #include <fstream>
+#include <iostream>
 
 RenderDevice::RenderDevice()
 {
@@ -10,17 +11,27 @@ RenderDevice::~RenderDevice()
 {
 }
 
-void RenderDevice::init()
+void RenderDevice::draw()
 {
-    CreateGraphicsPiepline();
+    glEnable(GL_DEPTH_TEST);
+    glDisable(GL_CULL_FACE);
+
+    glViewport(0, 0, 800, 800);
+    glClearColor(0.1f, 0.5f, 0.1f, 1.0f);
+    glClear(GL_DEPTH_BUFFER_BIT | GL_COLOR_BUFFER_BIT);
+    glUseProgram(m_shaderProgram);
+    glBindVertexArray(VertexArrayObject);
+    glDrawArrays(GL_TRIANGLES, 0, 3);
+    glBindVertexArray(0);
 }
 
 void RenderDevice::destroy()
 {
 }
 
-void RenderDevice::draw(std::vector<GLfloat> m_vertexData)
+void RenderDevice::init(std::vector<GLfloat> m_vertexData)
 {
+     CreateGraphicsPiepline();
     // generate VAO
     glGenVertexArrays(1, &VertexArrayObject);
     glBindVertexArray(VertexArrayObject);
@@ -35,7 +46,7 @@ void RenderDevice::draw(std::vector<GLfloat> m_vertexData)
     glEnableVertexAttribArray(0);
     glBindVertexArray(0);
     glDisableVertexAttribArray(0);
-    glDrawArrays(GL_TRIANGLES, 0, 3);
+    
 }
 
 GLuint RenderDevice::CompileShader(GLuint type, const std::string& source)
@@ -67,6 +78,7 @@ std::string RenderDevice::LoadShaderAsString(const std::string& filename)
         while (std::getline(myFile, line))
         {
             result += line + '\n';
+            std::cout << line << std::endl;
         }
         myFile.close();
     }
@@ -91,8 +103,8 @@ GLuint RenderDevice::CreateShaderProgram(const std::string& vertexshadersource, 
 
 void RenderDevice::CreateGraphicsPiepline()
 {
-    std::string vertexShaderSource = LoadShaderAsString("C:/Users/37529/Desktop/Dima/C++/opengl_sdl2/shaders/vert.glsl");
-    std::string fragmentShaderSource = LoadShaderAsString("C:/Users/37529/Desktop/Dima/C++/opengl_sdl2/shaders/frag.glsl");
+    std::string vertexShaderSource = LoadShaderAsString("D:/learn/c++/opengl_sdl2/shaders/vert.glsl");
+    std::string fragmentShaderSource = LoadShaderAsString("D:/learn/c++/opengl_sdl2/shaders/frag.glsl");
 
     m_shaderProgram = CreateShaderProgram(vertexShaderSource, fragmentShaderSource);
 }

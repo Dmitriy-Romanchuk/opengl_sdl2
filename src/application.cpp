@@ -54,12 +54,7 @@ void Application::update(float dt)
 void Application::render()
 {
     m_currentPage->render(m_renderDevice);
-    glEnable(GL_DEPTH_TEST);
-    glDisable(GL_CULL_FACE);
 
-    glViewport(0, 0, 800, 800);
-    glClearColor(0.1f, 0.5f, 0.1f, 1.0f);
-    glClear(GL_DEPTH_BUFFER_BIT | GL_COLOR_BUFFER_BIT);
     SDL_GL_SwapWindow(window.m_display);
 }
 
