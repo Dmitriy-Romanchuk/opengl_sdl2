@@ -9,8 +9,11 @@ public:
     const std::vector<GLfloat> m_VertexData
     {
         -0.5f, -0.5f, 0.0f,
+        -0.5f, 0.5f, 0.0f,
+         0.5f,  0.5f, 0.0f,
+         0.5f, 0.5f, 0.0f,
          0.5f, -0.5f, 0.0f,
-         0.0f,  0.5f, 0.0f
+        -0.5f,  -0.5f, 0.0f,
     };
 
 public:

@@ -18,7 +18,7 @@ void RenderDevice::draw(std::vector<GLfloat> m_vertexData)
     glUseProgram(m_shaderProgram);
     glBindVertexArray(VertexArrayObject);
     glBufferData(GL_ARRAY_BUFFER, m_vertexData.size() * sizeof(GLfloat), m_vertexData.data(), GL_STATIC_DRAW);
-    glDrawArrays(GL_TRIANGLES, 0, 3);
+    glDrawArrays(GL_TRIANGLES, 0, 6);
     glBindVertexArray(0);
 }
 
