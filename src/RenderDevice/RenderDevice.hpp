@@ -11,9 +11,9 @@ public:
     ~RenderDevice();
 
 public:
-    void draw();
+    void draw(std::vector<GLfloat> m_vertexData);
     void destroy();
-    void init(std::vector<GLfloat> m_vertexData);
+    void init();
 
 public:
     GLuint VertexArrayObject = 0;

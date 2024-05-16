@@ -13,13 +13,20 @@ Application::Application()
 
 bool Application::init()
 {
-    return window.Init();
+
+    if (window.Init() == false)
+    {
+        return false;
+    }
+
+    m_renderDevice->init();
+    return true;
 }
 
 void Application::destroy()
 {
     m_renderDevice.reset();
-    SDL_Quit();
+    SDL_Quit(); // переместить в MainWindow
 }
 
 void Application::run()

@@ -11,16 +11,13 @@ RenderDevice::~RenderDevice()
 {
 }
 
-void RenderDevice::draw()
+void RenderDevice::draw(std::vector<GLfloat> m_vertexData)
 {
-    glEnable(GL_DEPTH_TEST);
-    glDisable(GL_CULL_FACE);
-
-    glViewport(0, 0, 800, 800);
     glClearColor(0.1f, 0.5f, 0.1f, 1.0f);
     glClear(GL_DEPTH_BUFFER_BIT | GL_COLOR_BUFFER_BIT);
     glUseProgram(m_shaderProgram);
     glBindVertexArray(VertexArrayObject);
+    glBufferData(GL_ARRAY_BUFFER, m_vertexData.size() * sizeof(GLfloat), m_vertexData.data(), GL_STATIC_DRAW);
     glDrawArrays(GL_TRIANGLES, 0, 3);
     glBindVertexArray(0);
 }
@@ -29,8 +26,19 @@ void RenderDevice::destroy()
 {
 }
 
-void RenderDevice::init(std::vector<GLfloat> m_vertexData)
+void RenderDevice::init()
 {
+    glEnable(GL_DEPTH_TEST);
+    glDisable(GL_CULL_FACE);
+
+    glViewport(0, 0, 800, 800);
+
+    // TODO: Вынести в отдельный метод------------------
+    glClearColor(0.1f, 0.5f, 0.1f, 1.0f);
+    glClear(GL_DEPTH_BUFFER_BIT | GL_COLOR_BUFFER_BIT);
+    // -------------------------------------------------
+
+
      CreateGraphicsPiepline();
     // generate VAO
     glGenVertexArrays(1, &VertexArrayObject);
@@ -39,8 +47,8 @@ void RenderDevice::init(std::vector<GLfloat> m_vertexData)
     // generate VBO
     glGenBuffers(1, &VertexBufferObject);
     glBindBuffer(GL_ARRAY_BUFFER, VertexBufferObject);
-    glBufferData(GL_ARRAY_BUFFER, m_vertexData.size() * sizeof(GLfloat), m_vertexData.data(), GL_STATIC_DRAW);
-
+    // glBufferData(GL_ARRAY_BUFFER, m_vertexData.size() * sizeof(GLfloat), m_vertexData.data(), GL_STATIC_DRAW);
+    
     // set up VAO
     glVertexAttribPointer(0, 3, GL_FLOAT, GL_FALSE, sizeof(GLfloat) * 3, (void*)0);
     glEnableVertexAttribArray(0);
