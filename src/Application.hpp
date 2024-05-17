@@ -14,8 +14,8 @@ public:
     GLuint vertexbuffer;
 
     bool m_isRunning;
-    Window window;
-    SDL_Event event;
+    Window m_window;
+    SDL_Event m_event;
 
 public:
     Application();
@@ -31,7 +31,7 @@ private:
     void render();
 
 private:
-    const Uint8* state = SDL_GetKeyboardState(NULL);
+    const Uint8* m_state = SDL_GetKeyboardState(NULL);
     Page* m_currentPage = nullptr;
     std::unique_ptr<RenderDevice> m_renderDevice;
 

@@ -14,7 +14,7 @@ Application::Application()
 bool Application::init()
 {
 
-    if (window.Init() == false)
+    if (m_window.init() == false)
     {
         return false;
     }
@@ -42,13 +42,13 @@ void Application::run()
 
 bool Application::proccessInput()
 {
-    while (SDL_PollEvent(&event))
+    while (SDL_PollEvent(&m_event))
     {
-        if (state[SDL_SCANCODE_ESCAPE] || event.type == SDL_QUIT)
+        if (m_state[SDL_SCANCODE_ESCAPE] || m_event.type == SDL_QUIT)
         {
             m_isRunning = false;
         }
-        // m_currentPage->onInput(event);
+        // m_currentPage->onInput(m_event);
     }
     return true;
 }
@@ -62,7 +62,7 @@ void Application::render()
 {
     m_currentPage->render(m_renderDevice);
 
-    SDL_GL_SwapWindow(window.m_display);
+    SDL_GL_SwapWindow(m_window.m_display);
 }
 
 Page* Application::createGamePage()

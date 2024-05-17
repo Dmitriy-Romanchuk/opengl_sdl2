@@ -16,7 +16,7 @@ void RenderDevice::draw(std::vector<GLfloat> m_vertexData)
     glClearColor(0.1f, 0.5f, 0.1f, 1.0f);
     glClear(GL_DEPTH_BUFFER_BIT | GL_COLOR_BUFFER_BIT);
     glUseProgram(m_shaderProgram);
-    glBindVertexArray(VertexArrayObject);
+    glBindVertexArray(m_vertexArrayObject);
     glBufferData(GL_ARRAY_BUFFER, m_vertexData.size() * sizeof(GLfloat), m_vertexData.data(), GL_STATIC_DRAW);
     glDrawArrays(GL_TRIANGLES, 0, 6);
     glBindVertexArray(0);
@@ -41,12 +41,12 @@ void RenderDevice::init()
 
      CreateGraphicsPiepline();
     // generate VAO
-    glGenVertexArrays(1, &VertexArrayObject);
-    glBindVertexArray(VertexArrayObject);
+    glGenVertexArrays(1, &m_vertexArrayObject);
+    glBindVertexArray(m_vertexArrayObject);
 
     // generate VBO
-    glGenBuffers(1, &VertexBufferObject);
-    glBindBuffer(GL_ARRAY_BUFFER, VertexBufferObject);
+    glGenBuffers(1, &m_vertexBufferObject);
+    glBindBuffer(GL_ARRAY_BUFFER, m_vertexBufferObject);
     // glBufferData(GL_ARRAY_BUFFER, m_vertexData.size() * sizeof(GLfloat), m_vertexData.data(), GL_STATIC_DRAW);
     
     // set up VAO
@@ -111,8 +111,8 @@ GLuint RenderDevice::CreateShaderProgram(const std::string& vertexshadersource, 
 
 void RenderDevice::CreateGraphicsPiepline()
 {
-    std::string vertexShaderSource = LoadShaderAsString("D:/learn/c++/opengl_sdl2/shaders/vert.glsl");
-    std::string fragmentShaderSource = LoadShaderAsString("D:/learn/c++/opengl_sdl2/shaders/frag.glsl");
+    std::string vertexShaderSource = LoadShaderAsString("shaders/vert.glsl");
+    std::string fragmentShaderSource = LoadShaderAsString("shaders/frag.glsl");
 
     m_shaderProgram = CreateShaderProgram(vertexShaderSource, fragmentShaderSource);
 }

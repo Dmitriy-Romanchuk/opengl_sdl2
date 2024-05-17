@@ -2,7 +2,7 @@
 #include <GL/glew.h>
 #include <iostream>
 
-bool Window::Init()
+bool Window::init()
 {
     if (SDL_Init(SDL_INIT_EVERYTHING) < 0)
     {
