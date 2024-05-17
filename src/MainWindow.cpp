@@ -46,6 +46,11 @@ void Window::GetOpenGLVersionInfo()
     std::cout << "Shading Language: " << glGetString(GL_SHADING_LANGUAGE_VERSION) << std::endl;
 }
 
+void Window::destroy()
+{
+    SDL_Quit();
+}
+
 Window::Window()
 {
 }

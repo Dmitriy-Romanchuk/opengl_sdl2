@@ -15,6 +15,7 @@ public:
     Window();
     ~Window();
     bool init();
+    void destroy();
     void GetOpenGLVersionInfo();
 };
 

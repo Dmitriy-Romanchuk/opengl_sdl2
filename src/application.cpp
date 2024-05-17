@@ -26,7 +26,6 @@ bool Application::init()
 void Application::destroy()
 {
     m_renderDevice.reset();
-    SDL_Quit(); // переместить в MainWindow
 }
 
 void Application::run()
