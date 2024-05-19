@@ -1,7 +1,6 @@
 #include "Application.hpp"
 #include "Pages/GamePage.hpp"
 
-
 #include <SDL2/SDL.h>
 
 Application::Application()
@@ -13,7 +12,6 @@ Application::Application()
 
 bool Application::init()
 {
-
     if (m_window.init() == false)
     {
         return false;
@@ -47,7 +45,8 @@ bool Application::proccessInput()
         {
             m_isRunning = false;
         }
-        // m_currentPage->onInput(m_event);
+
+        m_currentPage->onInput(m_event);
     }
     return true;
 }

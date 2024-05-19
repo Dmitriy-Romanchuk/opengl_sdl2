@@ -3,6 +3,7 @@
 #include "RenderDevice/RenderDevice.hpp"
 
 #include <memory>
+#include <SDL2/SDL.h>
 
 class RenderDevice;
 
@@ -25,7 +26,7 @@ public:
     };
 
 public:
-    virtual void onInput(/*const SDL_Event& input*/) = 0;
+    virtual void onInput(SDL_Event& input) = 0;
     virtual void update(float dt) = 0;
     virtual void render(const std::unique_ptr<RenderDevice>& m_renderDevice) = 0;
 };
