@@ -21,6 +21,11 @@ std::vector<GLfloat> Player::getVertexSpecification()
     return m_VertexData;
 }
 
+Sprite* Player::createSprite()
+{
+    return new Sprite();
+}
+
 
 Player::Player(/* args */)
 {
