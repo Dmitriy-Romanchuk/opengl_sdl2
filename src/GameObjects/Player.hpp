@@ -10,22 +10,17 @@ class Sprite;
 class Player
 {
 public:
-    const std::vector<GLfloat> m_VertexData
-    {
-        -0.5f, -0.5f, 0.0f,
-        -0.5f, 0.5f, 0.0f,
-         0.5f,  0.5f, 0.0f,
-         0.5f, 0.5f, 0.0f,
-         0.5f, -0.5f, 0.0f,
-        -0.5f,  -0.5f, 0.0f,
-    };
 
     std::vector<GLfloat> m_initialPosition 
     {
         -0.5f, -0.5f, 0.0f // x, y, z
     };
 
+    GLfloat spriteSize = 1.0f;
+
 public:
+
+    Sprite* m_sprite = nullptr;
 
     enum class directionState
     {   
@@ -35,14 +30,15 @@ public:
         Right
     };
 
-Sprite* sprite;
+
 
 public:
     void changeState();
     void input();
     void update();
-    void render();
+    std::vector<GLfloat> render();
     std::vector<GLfloat> getVertexSpecification();
+    Sprite* createSprite();
 
 public:
     Player(/* args */);

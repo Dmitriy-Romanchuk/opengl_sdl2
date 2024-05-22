@@ -1,5 +1,10 @@
 #include "Player.hpp"
 
+Player::Player()
+{
+    m_sprite = createSprite();
+}
+
 inline void Player::changeState()
 {
 }
@@ -12,23 +17,14 @@ void Player::update()
 {
 }
 
-void Player::render()
+std::vector<GLfloat> Player::render()
 {
-}
-
-std::vector<GLfloat> Player::getVertexSpecification()
-{
-    return m_VertexData;
+   return m_sprite->render(m_initialPosition, spriteSize);
 }
 
 Sprite* Player::createSprite()
 {
     return new Sprite();
-}
-
-
-Player::Player(/* args */)
-{
 }
 
 Player::~Player()

@@ -29,5 +29,5 @@ void GamePage::update(float dt)
 
 void GamePage::render(const std::unique_ptr<RenderDevice>& m_renderDevice)
 {
-    m_renderDevice->draw(m_square.getVertexSpecification());
+    m_renderDevice->draw(m_square.render());
 }
