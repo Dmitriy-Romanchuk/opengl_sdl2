@@ -2,6 +2,7 @@
 #include "Pages/GamePage.hpp"
 
 #include <SDL2/SDL.h>
+#include <iostream>
 
 Application::Application()
     : m_isRunning(true)
@@ -44,6 +45,10 @@ bool Application::proccessInput()
         if (m_state[SDL_SCANCODE_ESCAPE] || m_event.type == SDL_QUIT)
         {
             m_isRunning = false;
+        }
+        if(m_state[SDL_SCANCODE_UP])
+        {
+            std::cout << "SDL_SCANCODE_UP" << std::endl;
         }
 
         m_currentPage->onInput(m_event);

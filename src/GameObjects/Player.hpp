@@ -10,7 +10,7 @@ class Sprite;
 class Player
 {
 public:
-    std::vector<GLfloat> m_initialPosition{
+    std::vector<GLfloat> m_startPosition{
         -0.5f, -0.5f, 0.0f // x, y, z
     };
 
@@ -32,7 +32,6 @@ public:
     void input();
     void update();
     std::vector<GLfloat> render();
-    std::vector<GLfloat> getVertexSpecification();
     Sprite* createSprite();
 
 public:

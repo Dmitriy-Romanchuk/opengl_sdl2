@@ -13,14 +13,8 @@ Page::Type GamePage::getPageType() const
 
 void GamePage::onInput(SDL_Event& m_event)
 {
-    // while (SDL_PollEvent(&m_event))
-    // {
-        //if (m_state[SDL_SCANCODE_UP])
-        // {
-           // m_uOffset += 0.01f;
-           //std::cout << "UP " << std::endl;
-        //}
-    // }
+    m_square.input();
+    std::cout << "GAME PAGE" << std::endl;
 }
 
 void GamePage::update(float dt)

@@ -19,7 +19,7 @@ void Player::update()
 
 std::vector<GLfloat> Player::render()
 {
-    return m_sprite->render(m_initialPosition, spriteSize);
+    return m_sprite->render(m_startPosition, spriteSize);
 }
 
 Sprite* Player::createSprite()
