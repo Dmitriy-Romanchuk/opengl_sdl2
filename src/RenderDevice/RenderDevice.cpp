@@ -18,7 +18,7 @@ void RenderDevice::draw(std::vector<GLfloat> m_vertexData)
     glUseProgram(m_shaderProgram);
     glBindVertexArray(m_vertexArrayObject);
     glBufferData(GL_ARRAY_BUFFER, m_vertexData.size() * sizeof(GLfloat), m_vertexData.data(), GL_STATIC_DRAW);
-    glDrawArrays(GL_TRIANGLES, 0, 6);
+    glDrawElements(GL_TRIANGLES, 6, GL_UNSIGNED_INT, 0);
     glBindVertexArray(0);
 }
 
@@ -38,8 +38,7 @@ void RenderDevice::init()
     glClear(GL_DEPTH_BUFFER_BIT | GL_COLOR_BUFFER_BIT);
     // -------------------------------------------------
 
-
-     CreateGraphicsPiepline();
+    CreateGraphicsPiepline();
     // generate VAO
     glGenVertexArrays(1, &m_vertexArrayObject);
     glBindVertexArray(m_vertexArrayObject);
@@ -48,13 +47,17 @@ void RenderDevice::init()
     glGenBuffers(1, &m_vertexBufferObject);
     glBindBuffer(GL_ARRAY_BUFFER, m_vertexBufferObject);
     // glBufferData(GL_ARRAY_BUFFER, m_vertexData.size() * sizeof(GLfloat), m_vertexData.data(), GL_STATIC_DRAW);
-    
+
     // set up VAO
     glVertexAttribPointer(0, 3, GL_FLOAT, GL_FALSE, sizeof(GLfloat) * 3, (void*)0);
+
+    const std::vector<GLuint> indexBufferData{ 0, 1, 3, 1, 2, 3 };
+    glGenBuffers(1, &m_indexBufferObject);
+    glBindBuffer(GL_ELEMENT_ARRAY_BUFFER, m_indexBufferObject);
+    glBufferData(GL_ELEMENT_ARRAY_BUFFER, indexBufferData.size() * sizeof(GLfloat), indexBufferData.data(), GL_STATIC_DRAW);
     glEnableVertexAttribArray(0);
     glBindVertexArray(0);
     glDisableVertexAttribArray(0);
-    
 }
 
 GLuint RenderDevice::CompileShader(GLuint type, const std::string& source)

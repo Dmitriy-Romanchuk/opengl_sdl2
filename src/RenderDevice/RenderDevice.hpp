@@ -19,6 +19,7 @@ public:
     GLuint m_vertexArrayObject = 0;
     GLuint m_vertexBufferObject = 0;
     GLuint m_shaderProgram = 0;
+    GLuint m_indexBufferObject = 0;
 
 private:
     void CreateGraphicsPiepline();
