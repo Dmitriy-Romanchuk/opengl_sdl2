@@ -40,18 +40,16 @@ void Application::run()
 
 bool Application::proccessInput()
 {
+    const Uint8* m_state = SDL_GetKeyboardState(NULL);
     while (SDL_PollEvent(&m_event))
     {
         if (m_state[SDL_SCANCODE_ESCAPE] || m_event.type == SDL_QUIT)
         {
             m_isRunning = false;
         }
-        if(m_state[SDL_SCANCODE_UP])
-        {
-            std::cout << "SDL_SCANCODE_UP" << std::endl;
-        }
 
-        m_currentPage->onInput(m_event);
+
+        m_currentPage->onInput(m_state);
     }
     return true;
 }

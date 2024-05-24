@@ -26,7 +26,7 @@ public:
     };
 
 public:
-    virtual void onInput(SDL_Event& input) = 0;
+    virtual void onInput(const Uint8* m_state) = 0;
     virtual void update(float dt) = 0;
     virtual void render(const std::unique_ptr<RenderDevice>& m_renderDevice) = 0;
 };

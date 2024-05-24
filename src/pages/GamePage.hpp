@@ -8,7 +8,7 @@ class GamePage : public Page
 public:
     Type getPageType() const;
 
-    void onInput(SDL_Event& input) override;
+    void onInput(const Uint8* m_state) override;
     void update(float dt) override;
     void render(const std::unique_ptr<RenderDevice>&m_renderDevice) override;
 

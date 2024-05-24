@@ -9,8 +9,27 @@ inline void Player::changeState()
 {
 }
 
-void Player::input()
+void Player::input(const Uint8* m_state)
 {
+        if(m_state[SDL_SCANCODE_UP])
+        {
+            m_startPosition[1] += 0.05;
+        }
+
+        if(m_state[SDL_SCANCODE_DOWN])
+        {
+            m_startPosition[1] -= 0.05;
+        }
+
+        if(m_state[SDL_SCANCODE_LEFT])
+        {
+            m_startPosition[0] -= 0.05;
+        }
+
+        if(m_state[SDL_SCANCODE_RIGHT])
+        {
+            m_startPosition[0] += 0.05;
+        }
 }
 
 void Player::update()

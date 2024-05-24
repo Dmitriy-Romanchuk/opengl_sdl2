@@ -29,7 +29,7 @@ public:
 
 public:
     void changeState();
-    void input();
+    void input(const Uint8* m_state);
     void update();
     std::vector<GLfloat> render();
     Sprite* createSprite();

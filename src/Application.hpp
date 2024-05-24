@@ -31,7 +31,6 @@ private:
     void render();
 
 private:
-    const Uint8* m_state = SDL_GetKeyboardState(NULL);
     Page* m_currentPage = nullptr;
     std::unique_ptr<RenderDevice> m_renderDevice;
 
