@@ -1,6 +1,7 @@
 #pragma once
 
 #include <GL/glew.h>
+#include <SOIL/SOIL.h>
 #include <string>
 #include <vector>
 
@@ -20,6 +21,11 @@ public:
     GLuint m_vertexBufferObject = 0;
     GLuint m_shaderProgram = 0;
     GLuint m_indexBufferObject = 0;
+    GLuint m_texture;
+
+private:
+    int width, height;
+    unsigned char* image = SOIL_load_image("container.jpg", &width, &height, 0, SOIL_LOAD_RGB);
 
 private:
     void CreateGraphicsPiepline();

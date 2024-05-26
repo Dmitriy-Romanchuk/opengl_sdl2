@@ -49,5 +49,6 @@ target_link_libraries(app ${GLM_LIBRARIES})
 list(APPEND RESOURCE
     ${CMAKE_CURRENT_SOURCE_DIR}/shaders/frag.glsl
     ${CMAKE_CURRENT_SOURCE_DIR}/shaders/vert.glsl
+    ${CMAKE_CURRENT_SOURCE_DIR}/container.jpg
 )
 

@@ -13,5 +13,5 @@ public:
     void render(const std::unique_ptr<RenderDevice>&m_renderDevice) override;
 
 private:
-    Player m_square;
+    Player m_player;
 };
