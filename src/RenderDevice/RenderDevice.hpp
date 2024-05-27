@@ -1,7 +1,8 @@
 #pragma once
 
+#include "stb_image.h"
+
 #include <GL/glew.h>
-#include <SOIL/SOIL.h>
 #include <string>
 #include <vector>
 
@@ -24,8 +25,8 @@ public:
     GLuint m_texture;
 
 private:
-    int width, height;
-    unsigned char* image = SOIL_load_image("container.jpg", &width, &height, 0, SOIL_LOAD_RGB);
+    int width, height, nrChannels;
+    unsigned char* image = stbi_load("container.jpg", &width, &height, &nrChannels, 0);
 
 private:
     void CreateGraphicsPiepline();

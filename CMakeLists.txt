@@ -37,11 +37,11 @@ set(SOURCE
     ${CMAKE_CURRENT_SOURCE_DIR}/src/Pages/GamePage.cpp
     ${CMAKE_CURRENT_SOURCE_DIR}/src/GameObjects/Player.cpp
     ${CMAKE_CURRENT_SOURCE_DIR}/src/GameObjects/Sprite.cpp
+    ${CMAKE_CURRENT_SOURCE_DIR}/src/stb_image.cpp
 )
 
 add_executable(app ${SOURCE})
 target_link_libraries(app ${SDL2_LIBRARIES})
-target_link_libraries(app ${SOIL_LIBRARY})
 target_link_libraries(app ${OPENGL_LIBRARIES})
 target_link_libraries(app ${GLEW_LIBRARIES})
 target_link_libraries(app ${GLM_LIBRARIES})
