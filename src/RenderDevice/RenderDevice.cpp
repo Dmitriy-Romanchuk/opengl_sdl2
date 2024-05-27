@@ -17,9 +17,11 @@ void RenderDevice::draw(std::vector<GLfloat> m_vertexData)
     glClear(GL_DEPTH_BUFFER_BIT | GL_COLOR_BUFFER_BIT);
     glUseProgram(m_shaderProgram);
     glBindVertexArray(m_vertexArrayObject);
+    glBindTexture(GL_TEXTURE_2D, m_texture);
     glBufferData(GL_ARRAY_BUFFER, m_vertexData.size() * sizeof(GLfloat), m_vertexData.data(), GL_STATIC_DRAW);
     glDrawElements(GL_TRIANGLES, 6, GL_UNSIGNED_INT, 0);
     glBindVertexArray(0);
+    glBindTexture(GL_TEXTURE_2D, 0);
 }
 
 void RenderDevice::destroy()
