@@ -52,3 +52,4 @@ list(APPEND RESOURCE
     ${CMAKE_CURRENT_SOURCE_DIR}/container.jpg
 )
 
+#add_subdirectory(external/submodules/SDL2)
