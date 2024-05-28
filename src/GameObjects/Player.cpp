@@ -11,26 +11,34 @@ inline void Player::changeState()
 
 void Player::input(const SDL_Event& m_event)
 {
-        // TODO Replace IF to Switch
-        if(m_event.type == SDL_KEYDOWN && m_event.key.keysym.sym == SDLK_UP)
+        if(m_event.type == SDL_KEYDOWN)
         {
-            m_startPosition[1] += 0.005;
+            switch (m_event.key.keysym.sym)
+            {
+            case SDLK_UP:
+                m_startPosition[1] += 0.005;
+                break;
+            case SDLK_DOWN:
+                m_startPosition[1] -= 0.005;
+                break;
+            case SDLK_LEFT:
+                m_startPosition[0] -= 0.005;
+                break;
+            case SDLK_RIGHT:
+                m_startPosition[0] += 0.005;
+                break;
+            case SDLK_KP_MINUS:
+                spriteSize -= 0.005;
+                break;
+            case SDLK_KP_PLUS:
+                spriteSize += 0.005;
+                break;
+            default:
+                break;
+            }
         }
 
-        if(m_event.type == SDL_KEYDOWN && m_event.key.keysym.sym == SDLK_DOWN)
-        {
-            m_startPosition[1] -= 0.005;
-        }
 
-        if(m_event.type == SDL_KEYDOWN && m_event.key.keysym.sym == SDLK_LEFT)
-        {
-            m_startPosition[0] -= 0.005;
-        }
-
-        if(m_event.type == SDL_KEYDOWN && m_event.key.keysym.sym == SDLK_RIGHT)
-        {
-            m_startPosition[0] += 0.005;
-        }
 
         if(m_event.type == SDL_KEYDOWN && m_event.key.keysym.sym == SDLK_KP_MINUS)
         {
