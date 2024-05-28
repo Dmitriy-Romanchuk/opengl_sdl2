@@ -9,34 +9,35 @@ inline void Player::changeState()
 {
 }
 
-void Player::input(const Uint8* m_state)
+void Player::input(const SDL_Event& m_event)
 {
-        if(m_state[SDL_SCANCODE_UP])
+        // TODO Replace IF to Switch
+        if(m_event.type == SDL_KEYDOWN && m_event.key.keysym.sym == SDLK_UP)
         {
             m_startPosition[1] += 0.005;
         }
 
-        if(m_state[SDL_SCANCODE_DOWN])
+        if(m_event.type == SDL_KEYDOWN && m_event.key.keysym.sym == SDLK_DOWN)
         {
             m_startPosition[1] -= 0.005;
         }
 
-        if(m_state[SDL_SCANCODE_LEFT])
+        if(m_event.type == SDL_KEYDOWN && m_event.key.keysym.sym == SDLK_LEFT)
         {
             m_startPosition[0] -= 0.005;
         }
 
-        if(m_state[SDL_SCANCODE_RIGHT])
+        if(m_event.type == SDL_KEYDOWN && m_event.key.keysym.sym == SDLK_RIGHT)
         {
             m_startPosition[0] += 0.005;
         }
 
-        if(m_state[SDL_SCANCODE_KP_MINUS])
+        if(m_event.type == SDL_KEYDOWN && m_event.key.keysym.sym == SDLK_KP_MINUS)
         {
             spriteSize -= 0.005;
         }
 
-        if(m_state[SDL_SCANCODE_KP_PLUS])
+        if(m_event.type == SDL_KEYDOWN && m_event.key.keysym.sym == SDLK_KP_PLUS)
         {
             spriteSize += 0.005;
         }

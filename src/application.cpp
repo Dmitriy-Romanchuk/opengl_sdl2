@@ -40,16 +40,25 @@ void Application::run()
 
 bool Application::proccessInput()
 {
-    const Uint8* m_state = SDL_GetKeyboardState(NULL);
+    SDL_Event m_event;
+
     while (SDL_PollEvent(&m_event))
     {
-        if (m_state[SDL_SCANCODE_ESCAPE] || m_event.type == SDL_QUIT)
+        if (m_event.type == SDL_QUIT)
         {
             m_isRunning = false;
         }
+        else if(m_event.type == SDL_KEYDOWN && m_event.key.keysym.sym == SDLK_ESCAPE)
+        {
+            m_isRunning = false;    
+        }
+        else
+        {
+            m_currentPage->onInput(m_event);
+        }
 
 
-        m_currentPage->onInput(m_state);
+        
     }
     return true;
 }

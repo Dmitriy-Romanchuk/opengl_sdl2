@@ -11,9 +11,9 @@ Page::Type GamePage::getPageType() const
     return Type();
 }
 
-void GamePage::onInput(const Uint8* m_state)
+void GamePage::onInput(const SDL_Event& m_event)
 {
-    m_player.input(m_state);
+    m_player.input(m_event);
 }
 
 void GamePage::update(float dt)

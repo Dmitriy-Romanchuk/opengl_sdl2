@@ -15,7 +15,6 @@ public:
 
     bool m_isRunning;
     Window m_window;
-    SDL_Event m_event;
 
 public:
     Application();

@@ -29,7 +29,7 @@ public:
 
 public:
     void changeState();
-    void input(const Uint8* m_state);
+    void input(const SDL_Event& m_event);
     void update();
     std::vector<GLfloat> render();
     Sprite* createSprite();
