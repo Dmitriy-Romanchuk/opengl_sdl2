@@ -13,28 +13,35 @@ void Player::input(const SDL_Event& m_event)
 {
         if(m_event.type == SDL_KEYDOWN)
         {
-            switch (m_event.key.keysym.sym)
+            auto sym = m_event.key.keysym.sym;
+            if(sym == SDLK_UP)
             {
-            case SDLK_UP:
                 m_startPosition[1] += 0.005;
-                break;
-            case SDLK_DOWN:
+            }
+
+            if(sym == SDLK_DOWN)
+            {
                 m_startPosition[1] -= 0.005;
-                break;
-            case SDLK_LEFT:
+            }
+
+            if(sym == SDLK_LEFT)
+            {
                 m_startPosition[0] -= 0.005;
-                break;
-            case SDLK_RIGHT:
+            }
+
+            if(sym == SDLK_RIGHT)
+            {
                 m_startPosition[0] += 0.005;
-                break;
-            case SDLK_KP_MINUS:
+            }
+
+            if(sym == SDLK_KP_MINUS)
+            {
                 spriteSize -= 0.005;
-                break;
-            case SDLK_KP_PLUS:
+            }
+
+            if(sym == SDLK_KP_PLUS)
+            {
                 spriteSize += 0.005;
-                break;
-            default:
-                break;
             }
         }
 
