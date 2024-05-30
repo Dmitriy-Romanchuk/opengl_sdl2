@@ -1,58 +1,123 @@
 #include "Player.hpp"
 
-Player::Player()
+namespace
 {
-    m_sprite = createSprite();
-}
+    struct
+    {
+        Player::Direction direction;
+        SDL_Keycode sym;
+    } DirectionMapping[] = {
+        { Player::Direction::Up, SDLK_UP },
+        { Player::Direction::Down, SDLK_DOWN },
+        { Player::Direction::Left, SDLK_LEFT },
+        { Player::Direction::Right, SDLK_RIGHT },
+    };
 
-inline void Player::changeState()
+    Player::Direction getDirection(SDL_Keycode sym)
+    {
+        for (const auto& mapping : DirectionMapping)
+        {
+            if (mapping.sym == sym)
+            {
+                return mapping.direction;
+            }
+        }
+
+        assert(false);
+        return Player::Direction::None;
+    }
+} // namespace
+
+Player::Player()
+    : m_position({ 0.0f, 0.0f })
+    , m_directionFlags(0u)
+    , m_sprite(createSprite())
 {
 }
 
 void Player::input(const SDL_Event& m_event)
 {
+    if (m_event.type == SDL_EVENT_KEY_DOWN || m_event.type == SDL_EVENT_KEY_UP)
+    {
+        auto sym = m_event.key.keysym.sym;
+
+        if (sym == SDLK_UP || sym == SDLK_DOWN || sym == SDLK_LEFT || sym == SDLK_RIGHT)
+        {
+            bool add = m_event.type == SDL_EVENT_KEY_DOWN ? true : false;
+            changeDirection(sym, add);
+        }
+    }
+
     if (m_event.type == SDL_EVENT_KEY_DOWN)
     {
         auto sym = m_event.key.keysym.sym;
-        if (sym == SDLK_UP)
-        {
-            m_startPosition[1] += 0.005;
-        }
-
-        if (sym == SDLK_DOWN)
-        {
-            m_startPosition[1] -= 0.005;
-        }
-
-        if (sym == SDLK_LEFT)
-        {
-            m_startPosition[0] -= 0.005;
-        }
-
-        if (sym == SDLK_RIGHT)
-        {
-            m_startPosition[0] += 0.005;
-        }
 
         if (sym == SDLK_KP_MINUS)
         {
-            spriteSize -= 0.005;
+            m_scale -= 0.005;
         }
 
         if (sym == SDLK_KP_PLUS)
         {
-            spriteSize += 0.005;
+            m_scale += 0.005;
         }
     }
 }
 
-void Player::update()
+void Player::update(float dt)
 {
+    glm::vec2 offset = { 0.0f, 0.0f };
+
+    if (m_directionFlags & static_cast<uint32_t>(Direction::Up))
+    {
+        offset.y =+ m_speed * dt;
+    }
+
+    if (m_directionFlags & static_cast<uint32_t>(Direction::Down))
+    {
+        offset.y =- m_speed * dt;
+    }
+
+    if (m_directionFlags & static_cast<uint32_t>(Direction::Left))
+    {
+        offset.x =- m_speed * dt;
+    }
+
+    if (m_directionFlags & static_cast<uint32_t>(Direction::Right))
+    {
+        offset.x =+ m_speed * dt;
+    }
+
+    m_position += offset;
 }
 
-std::vector<GLfloat> Player::render()
+void Player::render(RenderDevice* renderDevice)
 {
-    return m_sprite->render(m_startPosition, spriteSize);
+    m_sprite->render(renderDevice, m_position, m_scale);
+}
+
+void Player::changeDirection(SDL_Keycode sym, bool add)
+{
+    Direction direction = getDirection(sym);
+
+    if (add == true)
+    {
+        addDirectionState(direction);
+    }
+    else
+    {
+        removeDirectionState(direction);
+    }
+}
+
+void Player::addDirectionState(Direction direction)
+{
+    m_directionFlags |= static_cast<uint32_t>(direction);
+}
+
+void Player::removeDirectionState(Direction direction)
+{
+    m_directionFlags &= ~static_cast<uint32_t>(direction);
 }
 
 Sprite* Player::createSprite()

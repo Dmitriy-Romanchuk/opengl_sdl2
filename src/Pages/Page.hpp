@@ -1,9 +1,6 @@
 #pragma once
 
-#include "RenderDevice/RenderDevice.hpp"
-
 #include "SDL3/SDL.h"
-#include <memory>
 
 class RenderDevice;
 
@@ -28,5 +25,5 @@ public:
 public:
     virtual void onInput(const SDL_Event& m_event) = 0;
     virtual void update(float dt) = 0;
-    virtual void render(const std::unique_ptr<RenderDevice>& m_renderDevice) = 0;
+    virtual void render(RenderDevice* renderDevice) = 0;
 };

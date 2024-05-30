@@ -1,11 +1,11 @@
 #pragma once
-#include "Application.hpp"
 
-// #include <gl/gl.h>
-#include <vector>
+#include <glm/vec2.hpp>
+
+class RenderDevice;
 
 class Sprite
 {
 public:
-    std::vector<GLfloat> render(std::vector<GLfloat> m_initialPosition, const GLfloat& spriteSize);
+    void render(RenderDevice* renderDevice, const glm::vec2& position, float scale);
 };
