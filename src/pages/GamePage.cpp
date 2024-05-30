@@ -3,7 +3,7 @@
 #include "iostream"
 
 class Application;
-class RenderDevice;
+//class RenderDevice;
 
 Page::Type GamePage::getPageType() const
 {
