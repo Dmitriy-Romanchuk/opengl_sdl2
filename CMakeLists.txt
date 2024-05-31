@@ -13,7 +13,6 @@ include(FindPackageHandleStandardArgs)
 
 find_package(OpenGL REQUIRED)
 find_package(GLEW REQUIRED)
-find_package(SDL3 REQUIRED CONFIG REQUIRED COMPONENTS SDL3)
 
 # TODO: temp hack for linux
 if(NOT UNIX)
@@ -27,7 +26,7 @@ include_directories(
   ${CMAKE_CURRENT_SOURCE_DIR}/external/submodules/sdl/include
 )
 
-SET(LINKER_FLAGS "-Wall -lSDL3main -lSDL3")
+SET(LINKER_FLAGS "-Wall")
 SET(CMAKE_CXX_FLAGS "${CMAKE_CXX_FLAGS} ${LINKER_FLAGS}")
 
 set(EXTERNAL_SOURCE
@@ -50,7 +49,7 @@ add_executable(app
 )
 
 target_link_libraries(app PRIVATE
-  SDL3::SDL3-static
+  SDL3::SDL3-shared
   ${OPENGL_LIBRARIES}
   ${GLEW_LIBRARIES}
   ${GLM_LIBRARIES}
