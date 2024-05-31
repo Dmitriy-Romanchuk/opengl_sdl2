@@ -30,7 +30,7 @@ bool Window::init()
     GetOpenGLVersionInfo();
 
     SDL_WarpMouseInWindow(m_display, ScreenWidth / 2, ScreenHeight / 2);
-
+    
     // This function hides basic cursor Windows. Default value is false
     // SDL_SetRelativeMouseMode(SDL_FALSE);
 

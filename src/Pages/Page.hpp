@@ -2,8 +2,8 @@
 
 #include "RenderDevice/RenderDevice.hpp"
 
-#include "SDL3/SDL.h"
 #include <memory>
+#include "SDL3/SDL.h"
 
 class RenderDevice;
 

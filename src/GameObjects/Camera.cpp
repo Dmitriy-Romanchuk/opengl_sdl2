@@ -21,7 +21,7 @@ void Camera::MouseLook(int mouseX, int mouseY)
 {
     static bool firstLook = true;
     glm::vec2 currentMouse = glm::vec2(mouseX, mouseY);
-    if (firstLook)
+    if(firstLook)
     {
         mOldMousePosition = currentMouse;
         firstLook = false;
@@ -35,12 +35,12 @@ void Camera::MouseLook(int mouseX, int mouseY)
 
 void Camera::MoveForvard(float speed)
 {
-    mEye += (mViewDirection * speed);
+    mEye += (mViewDirection*speed);
 }
 
 void Camera::MoveBackward(float speed)
 {
-    mEye -= (mViewDirection * speed);
+    mEye -= (mViewDirection*speed);
 }
 
 void Camera::MoveLeft(float speed)
