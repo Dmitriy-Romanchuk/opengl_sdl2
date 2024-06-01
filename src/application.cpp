@@ -1,7 +1,7 @@
 #include "Application.hpp"
 #include "Pages/GamePage.hpp"
 
-#include <SDL2/SDL.h>
+#include <SDL.h>
 #include <iostream>
 
 Application::Application()

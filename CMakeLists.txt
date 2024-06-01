@@ -3,21 +3,26 @@ SET(CMAKE_CXX_COMPILER g++)
 
 project(ui_game)
 
-find_package(SDL2 REQUIRED)
 find_package(OpenGL REQUIRED)
 find_package(GLEW REQUIRED)
 find_package(GLM REQUIRED)
 
+add_subdirectory(external/submodules/SDL)
 
 include(FindPackageHandleStandardArgs)
 
 
 include_directories(
-    ${CMAKE_CURRENT_SOURCE_DIR}/src    
+    ${CMAKE_CURRENT_SOURCE_DIR}/src  
+    ${CMAKE_CURRENT_SOURCE_DIR}/external/submodules/sdl/include  
 )
 
 SET(LINKER_FLAGS "-Wall -lmingw32 -lSDL2main -lSDL2")
 SET(CMAKE_CXX_FLAGS "${CMAKE_CXX_FLAGS} ${LINKER_FLAGS}")
+
+set(EXTERNAL_SOURCE
+  ${CMAKE_CURRENT_SOURCE_DIR}/external/stb_image/stb_image.cpp
+)
 
 set(SOURCE
     ${CMAKE_CURRENT_SOURCE_DIR}/src/main.cpp
@@ -27,18 +32,27 @@ set(SOURCE
     ${CMAKE_CURRENT_SOURCE_DIR}/src/Pages/GamePage.cpp
     ${CMAKE_CURRENT_SOURCE_DIR}/src/GameObjects/Player.cpp
     ${CMAKE_CURRENT_SOURCE_DIR}/src/GameObjects/Sprite.cpp
-    ${CMAKE_CURRENT_SOURCE_DIR}/src/stb_image.cpp
 )
 
-add_executable(app ${SOURCE})
-target_link_libraries(app ${SDL2_LIBRARIES})
-target_link_libraries(app ${OPENGL_LIBRARIES})
-target_link_libraries(app ${GLEW_LIBRARIES})
-target_link_libraries(app ${GLM_LIBRARIES})
+add_executable(app
+  ${EXTERNAL_SOURCE}
+  ${SOURCE}
+)
+
+target_link_libraries(app PRIVATE
+  SDL2_LIBRARIES
+  ${OPENGL_LIBRARIES}
+  ${GLEW_LIBRARIES}
+  ${GLM_LIBRARIES}
+)
+
+target_include_directories(app PRIVATE
+  ${CMAKE_CURRENT_SOURCE_DIR}
+  ${CMAKE_CURRENT_SOURCE_DIR}/src
+  )
 
 list(APPEND RESOURCE
-    ${CMAKE_CURRENT_SOURCE_DIR}/shaders/frag.glsl
-    ${CMAKE_CURRENT_SOURCE_DIR}/shaders/vert.glsl
-    ${CMAKE_CURRENT_SOURCE_DIR}/container.jpg
+  ${CMAKE_CURRENT_SOURCE_DIR}/shaders/frag.glsl
+  ${CMAKE_CURRENT_SOURCE_DIR}/shaders/vert.glsl
+  ${CMAKE_CURRENT_SOURCE_DIR}/container.jpg
 )
-
