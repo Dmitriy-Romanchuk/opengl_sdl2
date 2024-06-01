@@ -1,6 +1,7 @@
 #include "Application.hpp"
 #include "Pages/GamePage.hpp"
 
+#include <SDL2/SDL.h>
 #include <iostream>
 
 Application::Application()
@@ -43,11 +44,11 @@ bool Application::proccessInput()
 
     while (SDL_PollEvent(&m_event))
     {
-        if (m_event.type == SDL_EVENT_QUIT)
+        if (m_event.type == SDL_QUIT)
         {
             m_isRunning = false;
         }
-        else if(m_event.type == SDL_EVENT_KEY_DOWN && m_event.key.keysym.sym == SDLK_ESCAPE)
+        else if(m_event.type == SDL_KEYDOWN && m_event.key.keysym.sym == SDLK_ESCAPE)
         {
             m_isRunning = false;    
         }

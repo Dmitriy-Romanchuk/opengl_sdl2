@@ -11,7 +11,7 @@ inline void Player::changeState()
 
 void Player::input(const SDL_Event& m_event)
 {
-        if(m_event.type == SDL_EVENT_KEY_DOWN)
+        if(m_event.type == SDL_KEYDOWN)
         {
             auto sym = m_event.key.keysym.sym;
             if(sym == SDLK_UP)
@@ -43,6 +43,18 @@ void Player::input(const SDL_Event& m_event)
             {
                 spriteSize += 0.005;
             }
+        }
+
+
+
+        if(m_event.type == SDL_KEYDOWN && m_event.key.keysym.sym == SDLK_KP_MINUS)
+        {
+            spriteSize -= 0.005;
+        }
+
+        if(m_event.type == SDL_KEYDOWN && m_event.key.keysym.sym == SDLK_KP_PLUS)
+        {
+            spriteSize += 0.005;
         }
 }
 

@@ -3,30 +3,30 @@ SET(CMAKE_CXX_COMPILER g++)
 
 project(ui_game)
 
-#find_package(SDL2 REQUIRED)
+find_package(SDL2 REQUIRED)
 find_package(OpenGL REQUIRED)
 find_package(GLEW REQUIRED)
 find_package(GLM REQUIRED)
 
 # Try to find SOIL, the Simple OpenGL Image Library
-#find_path(SOIL_INCLUDE_DIR SOIL/SOIL.h)
-#find_library(SOIL_LIBRARY NAMES SOIL)
+find_path(SOIL_INCLUDE_DIR SOIL/SOIL.h)
+find_library(SOIL_LIBRARY NAMES SOIL)
 
 include(FindPackageHandleStandardArgs)
 # handle QUIETLY and REQUIRED
-#find_package_handle_standard_args(SOIL DEFAULT_MSG
-	#SOIL_INCLUDE_DIR SOIL_LIBRARY)
+find_package_handle_standard_args(SOIL DEFAULT_MSG
+	SOIL_INCLUDE_DIR SOIL_LIBRARY)
 
-#mark_as_advanced(SOIL_INCLUDE_DIR SOIL_LIBRARY)
-#set(SOIL_LIBRARIES ${SOIL_LIBRARY})
-#set(SOIL_INCLUDE_DIRS ${SOIL_INCLUDE_DIR})
+mark_as_advanced(SOIL_INCLUDE_DIR SOIL_LIBRARY)
+set(SOIL_LIBRARIES ${SOIL_LIBRARY})
+set(SOIL_INCLUDE_DIRS ${SOIL_INCLUDE_DIR})
 # finish find SOIL
 
 include_directories(
     ${CMAKE_CURRENT_SOURCE_DIR}/src    
 )
 
-SET(LINKER_FLAGS "-Wall -lmingw32 -lSDL3main -lSDL3")
+SET(LINKER_FLAGS "-Wall -lmingw32 -lSDL2main -lSDL2")
 SET(CMAKE_CXX_FLAGS "${CMAKE_CXX_FLAGS} ${LINKER_FLAGS}")
 
 set(SOURCE
@@ -52,5 +52,5 @@ list(APPEND RESOURCE
     ${CMAKE_CURRENT_SOURCE_DIR}/container.jpg
 )
 
-set(SDL_TEST OFF CACHE BOOL "Build SDL test programs" FORCE)
-add_subdirectory(external/submodules/SDL)
+#set(SDL_TEST OFF CACHE BOOL "Build SDL test programs" FORCE)
+#add_subdirectory(external/submodules/SDL2)
