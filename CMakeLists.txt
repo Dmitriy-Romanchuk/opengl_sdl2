@@ -25,9 +25,8 @@ include(FindPackageHandleStandardArgs)
 include_directories(
     ${CMAKE_CURRENT_SOURCE_DIR}/src    
 )
-#-lSDL3main -lSDL3
 
-SET(LINKER_FLAGS "-Wall -lmingw32 ")
+SET(LINKER_FLAGS "-Wall -lmingw32 -lSDL3main -lSDL3")
 SET(CMAKE_CXX_FLAGS "${CMAKE_CXX_FLAGS} ${LINKER_FLAGS}")
 
 set(SOURCE
@@ -42,7 +41,7 @@ set(SOURCE
 )
 
 add_executable(app ${SOURCE})
-#target_link_libraries(app ${SDL3_LIBRARIES})
+target_link_libraries(app ${SDL2_LIBRARIES})
 target_link_libraries(app ${OPENGL_LIBRARIES})
 target_link_libraries(app ${GLEW_LIBRARIES})
 target_link_libraries(app ${GLM_LIBRARIES})
@@ -53,5 +52,5 @@ list(APPEND RESOURCE
     ${CMAKE_CURRENT_SOURCE_DIR}/container.jpg
 )
 
-#set(SDL_TEST OFF CACHE BOOL "Build SDL test programs" FORCE)
+set(SDL_TEST OFF CACHE BOOL "Build SDL test programs" FORCE)
 add_subdirectory(external/submodules/SDL)
