@@ -52,5 +52,4 @@ list(APPEND RESOURCE
     ${CMAKE_CURRENT_SOURCE_DIR}/container.jpg
 )
 
-#set(SDL_TEST OFF CACHE BOOL "Build SDL test programs" FORCE)
 #add_subdirectory(external/submodules/SDL2)
