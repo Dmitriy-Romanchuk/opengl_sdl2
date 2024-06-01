@@ -2,7 +2,7 @@
 
 #include "GameObjects/Sprite.hpp"
 
-#include <GL/glew.h>
+#include <gl/glew.h>
 #include <vector>
 
 class Sprite;

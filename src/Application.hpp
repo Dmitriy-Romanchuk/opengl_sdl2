@@ -3,7 +3,7 @@
 #include "MainWindow.hpp"
 #include "RenderDevice/RenderDevice.hpp"
 
-#include <GL/gl.h>
+#include <gl/gl.h>
 #include <memory>
 
 class Page;
