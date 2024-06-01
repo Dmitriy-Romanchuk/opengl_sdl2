@@ -6,7 +6,6 @@ class Camera
 {
 public:
     Camera();
-
 public:
     glm::mat4 GetViewMatrix() const;
     glm::vec3 Position() const;
@@ -17,7 +16,9 @@ public:
     void MoveLeft(float speed);
     void MoveRight(float speed);
 
+
 private:
+
     glm::vec3 mEye;
     glm::vec3 mViewDirection;
     glm::vec3 mUpVector;

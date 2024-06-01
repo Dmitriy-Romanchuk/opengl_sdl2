@@ -7,7 +7,7 @@ int main(int argc, char* argv[])
     auto success = app.init();
     if (success)
     {
-        app.run();
+         app.run();
     }
 
     app.destroy();

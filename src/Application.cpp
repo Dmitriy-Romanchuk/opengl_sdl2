@@ -47,14 +47,17 @@ bool Application::proccessInput()
         {
             m_isRunning = false;
         }
-        else if (m_event.type == SDL_EVENT_KEY_DOWN && m_event.key.keysym.sym == SDLK_ESCAPE)
+        else if(m_event.type == SDL_EVENT_KEY_DOWN && m_event.key.keysym.sym == SDLK_ESCAPE)
         {
-            m_isRunning = false;
+            m_isRunning = false;    
         }
         else
         {
             m_currentPage->onInput(m_event);
         }
+
+
+        
     }
     return true;
 }
