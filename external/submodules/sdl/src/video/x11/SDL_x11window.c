@@ -655,15 +655,21 @@ int X11_CreateWindow(SDL_VideoDevice *_this, SDL_Window *window, SDL_PropertiesI
         return SDL_SetError("Couldn't create window");
     }
 
-    SetWindowBordered(display, screen, w,
-                      !(window->flags & SDL_WINDOW_BORDERLESS));
+    /* Do not set borderless window if in desktop fullscreen, this causes
+       flickering in multi-monitor setups */
+    if (!((window->pending_flags & SDL_WINDOW_FULLSCREEN) &&
+          (window->flags & SDL_WINDOW_BORDERLESS) &&
+          !window->fullscreen_exclusive)) {
+        SetWindowBordered(display, screen, w,
+                          !(window->flags & SDL_WINDOW_BORDERLESS));
+    }
 
     sizehints = X11_XAllocSizeHints();
     /* Setup the normal size hints */
     sizehints->flags = 0;
     if (!(window->flags & SDL_WINDOW_RESIZABLE)) {
-        sizehints->min_width = sizehints->max_width = window->floating.w;
-        sizehints->min_height = sizehints->max_height = window->floating.h;
+        sizehints->min_width = sizehints->max_width = window->w;
+        sizehints->min_height = sizehints->max_height = window->h;
         sizehints->flags |= (PMaxSize | PMinSize);
     }
     if (!undefined_position) {

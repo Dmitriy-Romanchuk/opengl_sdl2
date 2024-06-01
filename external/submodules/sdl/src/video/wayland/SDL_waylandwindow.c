@@ -818,18 +818,11 @@ static void handle_configure_xdg_toplevel(void *data,
             }
         }
 
-        /* Notes on the spec:
+        /* The content limits are only a hint, which the compositor is free to ignore,
+         * so apply them manually when appropriate.
          *
-         * - The content limits are only a hint, which the compositor is free to ignore,
-         *   so apply them manually when appropriate.
-         *
-         * - Maximized windows must have their exact dimensions respected, thus they must
-         *   not be resized, or a protocol violation can occur.
-         *
-         * - When resizing a window, the width/height are maximum values, so aspect ratio
-         *   correction can't resize beyond the existing dimensions, or a protocol violation
-         *   can occur. In practice, nothing seems to kill clients that do this, but doing
-         *   so causes GNOME to glitch out.
+         * Per the spec, maximized windows must have their exact dimensions respected,
+         * thus they must not be resized, or a protocol violation can occur.
          */
         if (!maximized) {
             if (!wind->scale_to_display) {
@@ -842,15 +835,6 @@ static void handle_configure_xdg_toplevel(void *data,
                     wind->requested.logical_height = SDL_min(wind->requested.logical_height, window->max_h);
                 }
                 wind->requested.logical_height = SDL_max(wind->requested.logical_height, window->min_h);
-
-                /* Aspect correction. */
-                const float aspect = (float)wind->requested.logical_width / (float)wind->requested.logical_height;
-
-                if (window->min_aspect && aspect < window->min_aspect) {
-                    wind->requested.logical_height = SDL_roundf((float)wind->requested.logical_width / window->min_aspect);
-                } else if (window->max_aspect && aspect > window->max_aspect) {
-                    wind->requested.logical_width = SDL_roundf((float)wind->requested.logical_height * window->max_aspect);
-                }
             } else {
                 if (window->max_w > 0) {
                     wind->requested.pixel_width = SDL_min(wind->requested.pixel_width, window->max_w);
@@ -861,15 +845,6 @@ static void handle_configure_xdg_toplevel(void *data,
                     wind->requested.pixel_height = SDL_min(wind->requested.pixel_height, window->max_h);
                 }
                 wind->requested.pixel_height = SDL_max(wind->requested.pixel_height, window->min_h);
-
-                /* Aspect correction. */
-                const float aspect = (float)wind->requested.pixel_width / (float)wind->requested.pixel_height;
-
-                if (window->min_aspect && aspect < window->min_aspect) {
-                    wind->requested.pixel_height = SDL_roundf((float)wind->requested.pixel_width / window->min_aspect);
-                } else if (window->max_aspect && aspect > window->max_aspect) {
-                    wind->requested.pixel_width = SDL_roundf((float)wind->requested.pixel_height * window->max_aspect);
-                }
 
                 wind->requested.logical_width = PixelToPoint(window, wind->requested.pixel_width);
                 wind->requested.logical_height = PixelToPoint(window, wind->requested.pixel_height);
@@ -1200,18 +1175,11 @@ static void decoration_frame_configure(struct libdecor_frame *frame,
             }
         }
 
-        /* Notes on the spec:
+        /* The content limits are only a hint, which the compositor is free to ignore,
+         * so apply them manually when appropriate.
          *
-         * - The content limits are only a hint, which the compositor is free to ignore,
-         *   so apply them manually when appropriate.
-         *
-         * - Maximized windows must have their exact dimensions respected, thus they must
-         *   not be resized, or a protocol violation can occur.
-         *
-         * - When resizing a window, the width/height are maximum values, so aspect ratio
-         *   correction can't resize beyond the existing dimensions, or a protocol violation
-         *   can occur. In practice, nothing seems to kill clients that do this, but doing
-         *   so causes GNOME to glitch out.
+         * Per the spec, maximized windows must have their exact dimensions respected,
+         * thus they must not be resized, or a protocol violation can occur.
          */
         if (!maximized) {
             if (!wind->scale_to_display) {
@@ -1224,15 +1192,6 @@ static void decoration_frame_configure(struct libdecor_frame *frame,
                     wind->requested.logical_height = SDL_min(wind->requested.logical_height, window->max_h);
                 }
                 wind->requested.logical_height = SDL_max(wind->requested.logical_height, window->min_h);
-
-                /* Aspect correction. */
-                const float aspect = (float)wind->requested.logical_width / (float)wind->requested.logical_height;
-
-                if (window->min_aspect && aspect < window->min_aspect) {
-                    wind->requested.logical_height = SDL_roundf((float)wind->requested.logical_width / window->min_aspect);
-                } else if (window->max_aspect && aspect > window->max_aspect) {
-                    wind->requested.logical_width = SDL_roundf((float)wind->requested.logical_height * window->max_aspect);
-                }
             } else {
                 if (window->max_w > 0) {
                     wind->requested.pixel_width = SDL_min(wind->requested.pixel_width, window->max_w);
@@ -1244,15 +1203,6 @@ static void decoration_frame_configure(struct libdecor_frame *frame,
                 }
                 wind->requested.pixel_height = SDL_max(wind->requested.pixel_height, window->min_h);
 
-                /* Aspect correction. */
-                const float aspect = (float)wind->requested.pixel_width / (float)wind->requested.pixel_height;
-
-                if (window->min_aspect && aspect < window->min_aspect) {
-                    wind->requested.pixel_height = SDL_roundf((float)wind->requested.pixel_width / window->min_aspect);
-                } else if (window->max_aspect && aspect > window->max_aspect) {
-                    wind->requested.pixel_width = SDL_roundf((float)wind->requested.pixel_height * window->max_aspect);
-                }
-                
                 wind->requested.logical_width = PixelToPoint(window, wind->requested.pixel_width);
                 wind->requested.logical_height = PixelToPoint(window, wind->requested.pixel_height);
             }
