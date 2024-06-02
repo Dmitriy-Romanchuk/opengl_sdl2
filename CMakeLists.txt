@@ -9,15 +9,13 @@ find_package(GLM REQUIRED)
 
 add_subdirectory(external/submodules/SDL)
 
-include(FindPackageHandleStandardArgs)
-
-
 include_directories(
     ${CMAKE_CURRENT_SOURCE_DIR}/src  
     ${CMAKE_CURRENT_SOURCE_DIR}/external/submodules/sdl/include  
 )
 
-SET(LINKER_FLAGS "-Wall -lmingw32 -lSDL2main -lSDL2")
+
+SET(LINKER_FLAGS "-Wall -lmingw32")
 SET(CMAKE_CXX_FLAGS "${CMAKE_CXX_FLAGS} ${LINKER_FLAGS}")
 
 set(EXTERNAL_SOURCE
@@ -39,8 +37,15 @@ add_executable(app
   ${SOURCE}
 )
 
+# copy dll in the same directory as executable
+add_custom_command(TARGET app POST_BUILD
+    COMMAND ${CMAKE_COMMAND} -E copy_if_different
+        "${CMAKE_CURRENT_SOURCE_DIR}/.build/external/submodules/SDL/SDL2d.dll"
+        $<TARGET_FILE_DIR:app>)
+
 target_link_libraries(app PRIVATE
-  SDL2_LIBRARIES
+  SDL2::SDL2main
+  SDL2::SDL2
   ${OPENGL_LIBRARIES}
   ${GLEW_LIBRARIES}
   ${GLM_LIBRARIES}
@@ -56,3 +61,4 @@ list(APPEND RESOURCE
   ${CMAKE_CURRENT_SOURCE_DIR}/shaders/vert.glsl
   ${CMAKE_CURRENT_SOURCE_DIR}/container.jpg
 )
+
