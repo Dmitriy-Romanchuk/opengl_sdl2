@@ -3,7 +3,7 @@
 #include "RenderDevice/RenderDevice.hpp"
 
 #include <memory>
-#include <SDL2/SDL.h>
+#include <SDL.h>
 
 class RenderDevice;
 
