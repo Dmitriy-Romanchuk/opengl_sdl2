@@ -5,7 +5,6 @@
 
 class GamePage : public Page
 {
-
 public:
     Type getPageType() const;
 
@@ -13,7 +12,6 @@ public:
     void update(float dt) override;
 
     void render(RenderDevice* renderDevice) override;
-
 
 private:
     Player m_player;

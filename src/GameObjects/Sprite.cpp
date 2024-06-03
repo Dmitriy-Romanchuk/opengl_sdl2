@@ -4,7 +4,7 @@
 
 void Sprite::render(RenderDevice* renderDevice, const glm::vec2& position, float scale)
 {
-   GLfloat data[5 * 4];
+    GLfloat data[5 * 4];
 
     data[0] = position.x;
     data[1] = position.y;

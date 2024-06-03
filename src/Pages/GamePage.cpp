@@ -1,10 +1,7 @@
 #include "Pages/GamePage.hpp"
 #include "GameObjects/Player.hpp"
 
-#include "iostream"
 #include "GamePage.hpp"
-
-
 
 Page::Type GamePage::getPageType() const
 {
@@ -18,7 +15,7 @@ void GamePage::onInput(const SDL_Event& m_event)
 
 void GamePage::update(float dt)
 {
-        m_player.update(dt);
+    m_player.update(dt);
 }
 
 void GamePage::render(RenderDevice* renderDevice)

@@ -42,7 +42,7 @@ bool Application::proccessInput()
 {
     SDL_Event event;
     auto eventCount = 0u;
-    
+
     while (SDL_PollEvent(&event))
     {
         const auto type = event.type;
@@ -52,7 +52,7 @@ bool Application::proccessInput()
             m_isRunning = false;
         }
 
-        else if(type == SDL_KEYDOWN && event.key.keysym.sym == SDLK_ESCAPE)
+        else if (type == SDL_KEYDOWN && event.key.keysym.sym == SDLK_ESCAPE)
 
         {
             m_isRunning = false;
@@ -62,14 +62,12 @@ bool Application::proccessInput()
             m_currentPage->onInput(event);
         }
 
-
         eventCount++;
     }
 
     if (eventCount > 0)
     {
         std::cout << "eventCount = " << eventCount << std::endl;
-
     }
 
     return true;

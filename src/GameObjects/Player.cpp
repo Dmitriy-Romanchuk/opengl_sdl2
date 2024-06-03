@@ -36,7 +36,6 @@ Player::Player()
 
 void Player::input(const SDL_Event& m_event)
 {
-
     if (m_event.type == SDL_KEYDOWN || m_event.type == SDL_KEYUP)
     {
         auto sym = m_event.key.keysym.sym;
@@ -106,7 +105,6 @@ void Player::changeDirection(SDL_Keycode sym, bool add)
     else
     {
         removeDirectionState(direction);
-
     }
 }
 

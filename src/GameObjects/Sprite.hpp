@@ -4,11 +4,8 @@
 
 class RenderDevice;
 
-
 class Sprite
 {
 public:
-     void render(RenderDevice* renderDevice, const glm::vec2& position, float scale);
-
-
+    void render(RenderDevice* renderDevice, const glm::vec2& position, float scale);
 };

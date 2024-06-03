@@ -2,10 +2,10 @@
 
 #include "GameObjects/Sprite.hpp"
 
+#include <SDL2/SDL_events.h>
 #include <gl/glew.h>
 #include <glm/vec2.hpp>
 #include <vector>
-#include <SDL2/SDL_events.h>
 
 class Sprite;
 class RenderDevice;
