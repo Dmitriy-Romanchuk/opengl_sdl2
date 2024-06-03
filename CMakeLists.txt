@@ -1,7 +1,7 @@
 cmake_minimum_required(VERSION 3.21.3)
 SET(CMAKE_CXX_COMPILER g++)
 
-project(ui_game)
+project(arcanoid)
 
 find_package(OpenGL REQUIRED)
 find_package(GLEW REQUIRED)
@@ -13,7 +13,6 @@ include_directories(
     ${CMAKE_CURRENT_SOURCE_DIR}/src  
     ${CMAKE_CURRENT_SOURCE_DIR}/external/submodules/sdl/include  
 )
-
 
 SET(LINKER_FLAGS "-Wall -lmingw32")
 SET(CMAKE_CXX_FLAGS "${CMAKE_CXX_FLAGS} ${LINKER_FLAGS}")
@@ -54,7 +53,7 @@ target_link_libraries(app PRIVATE
 target_include_directories(app PRIVATE
   ${CMAKE_CURRENT_SOURCE_DIR}
   ${CMAKE_CURRENT_SOURCE_DIR}/src
-  )
+)
 
 list(APPEND RESOURCE
   ${CMAKE_CURRENT_SOURCE_DIR}/shaders/frag.glsl
