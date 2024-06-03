@@ -40,23 +40,38 @@ void Application::run()
 
 bool Application::proccessInput()
 {
-    SDL_Event m_event;
-
-    while (SDL_PollEvent(&m_event))
+    SDL_Event event;
+    auto eventCount = 0u;
+    
+    while (SDL_PollEvent(&event))
     {
-        if (m_event.type == SDL_QUIT)
+        const auto type = event.type;
+
+        if (type == SDL_QUIT)
         {
             m_isRunning = false;
         }
-        else if (m_event.type == SDL_KEYDOWN && m_event.key.keysym.sym == SDLK_ESCAPE)
+
+        else if(type == SDL_KEYDOWN && event.key.keysym.sym == SDLK_ESCAPE)
+
         {
             m_isRunning = false;
         }
         else
         {
-            m_currentPage->onInput(m_event);
+            m_currentPage->onInput(event);
         }
+
+
+        eventCount++;
     }
+
+    if (eventCount > 0)
+    {
+        std::cout << "eventCount = " << eventCount << std::endl;
+
+    }
+
     return true;
 }
 
@@ -67,7 +82,7 @@ void Application::update(float dt)
 
 void Application::render()
 {
-    m_currentPage->render(m_renderDevice);
+    m_currentPage->render(m_renderDevice.get());
 
     SDL_GL_SwapWindow(m_window.m_display);
 }

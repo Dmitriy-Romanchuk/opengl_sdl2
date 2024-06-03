@@ -2,9 +2,9 @@
 #include "GameObjects/Player.hpp"
 
 #include "iostream"
+#include "GamePage.hpp"
 
-class Application;
-class RenderDevice;
+
 
 Page::Type GamePage::getPageType() const
 {
@@ -18,9 +18,10 @@ void GamePage::onInput(const SDL_Event& m_event)
 
 void GamePage::update(float dt)
 {
+        m_player.update(dt);
 }
 
-void GamePage::render(const std::unique_ptr<RenderDevice>& m_renderDevice)
+void GamePage::render(RenderDevice* renderDevice)
 {
-    m_renderDevice->draw(m_player.render());
+    m_player.render(renderDevice);
 }
