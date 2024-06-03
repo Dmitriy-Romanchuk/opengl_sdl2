@@ -1,25 +1,36 @@
 #include "Sprite.hpp"
 
-std::vector<GLfloat> Sprite::render(std::vector<GLfloat> m_initialPosition, const GLfloat& spriteSize)
+#include "RenderDevice/RenderDevice.hpp"
+
+void Sprite::render(RenderDevice* renderDevice, const glm::vec2& position, float scale)
 {
-    std::vector<GLfloat> vertexes{
+   GLfloat data[5 * 4];
 
-        m_initialPosition[0], m_initialPosition[1], m_initialPosition[2],
+    data[0] = position.x;
+    data[1] = position.y;
+    data[2] = 0.0f;
+    data[3] = 1.0f;
+    data[4] = 1.0f;
 
-        1.0f, 1.0f,
+    data[5] = position.x + scale;
+    data[6] = position.y;
+    data[7] = 0.0f;
+    data[8] = 1.0f;
+    data[9] = 0.0f;
 
-        m_initialPosition[0] + spriteSize, m_initialPosition[1], m_initialPosition[2],
+    data[10] = position.x + scale;
+    data[11] = position.y + scale;
+    data[12] = 0.0f;
+    data[13] = 0.0f;
+    data[14] = 0.0f;
 
-        1.0f, 0.0f,
+    data[15] = position.x;
+    data[16] = position.y + scale;
+    data[17] = 0.0f;
+    data[18] = 0.0f;
+    data[19] = 1.0f;
 
-        m_initialPosition[0] + spriteSize, m_initialPosition[1] + spriteSize, m_initialPosition[2],
+    auto size = sizeof(data);
 
-        0.0f, 0.0f,
-
-        m_initialPosition[0], m_initialPosition[1] + spriteSize, m_initialPosition[2],
-
-        0.0f, 1.0f
-    };
-
-    return vertexes;
+    renderDevice->draw(data, size);
 }

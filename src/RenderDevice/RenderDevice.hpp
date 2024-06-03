@@ -13,7 +13,7 @@ public:
     ~RenderDevice();
 
 public:
-    void draw(std::vector<GLfloat> m_vertexData);
+    void draw(const GLfloat* data, size_t size);
     void destroy();
     void init();
 
