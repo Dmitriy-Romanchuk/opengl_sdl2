@@ -51,14 +51,17 @@ bool Application::proccessInput()
         {
             m_isRunning = false;
         }
+
         else if(type == SDL_KEYDOWN && event.key.keysym.sym == SDLK_ESCAPE)
+
         {
-            m_isRunning = false;    
+            m_isRunning = false;
         }
         else
         {
             m_currentPage->onInput(event);
         }
+
 
         eventCount++;
     }
@@ -66,6 +69,7 @@ bool Application::proccessInput()
     if (eventCount > 0)
     {
         std::cout << "eventCount = " << eventCount << std::endl;
+
     }
 
     return true;
