@@ -1,3 +1,6 @@
 [submodule "external/submodules/SDL"]
 	path = external/submodules/SDL
 	url = https://github.com/libsdl-org/SDL
+[submodule "external/submodules/glm"]
+	path = external/submodules/glm
+	url = https://github.com/g-truc/glm

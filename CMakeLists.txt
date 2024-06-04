@@ -4,13 +4,16 @@ SET(CMAKE_CXX_COMPILER g++)
 project(arcanoid)
 
 find_package(OpenGL REQUIRED)
-find_package(GLM REQUIRED)
 
-add_subdirectory(external/submodules/SDL)
+add_subdirectory(
+  external/submodules/SDL
+  external/submodules/glm
+  )
 
 include_directories(
     ${CMAKE_CURRENT_SOURCE_DIR}/src  
-    ${CMAKE_CURRENT_SOURCE_DIR}/external/submodules/sdl/include 
+    ${CMAKE_CURRENT_SOURCE_DIR}/external/submodules/sdl/include
+    ${CMAKE_CURRENT_SOURCE_DIR}/external/submodules/glm
     ${CMAKE_CURRENT_SOURCE_DIR}/external/glad/include/glad
 )
 
@@ -46,8 +49,6 @@ add_custom_command(TARGET app POST_BUILD
 target_link_libraries(app PRIVATE
   SDL2::SDL2main
   SDL2::SDL2
-  ${OPENGL_LIBRARIES}
-  ${GLM_LIBRARIES}
 )
 
 target_include_directories(app PRIVATE
