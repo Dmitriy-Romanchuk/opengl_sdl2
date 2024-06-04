@@ -4,7 +4,6 @@ SET(CMAKE_CXX_COMPILER g++)
 project(arcanoid)
 
 find_package(OpenGL REQUIRED)
-# find_package(GLEW REQUIRED)
 find_package(GLM REQUIRED)
 
 add_subdirectory(external/submodules/SDL)
@@ -48,7 +47,6 @@ target_link_libraries(app PRIVATE
   SDL2::SDL2main
   SDL2::SDL2
   ${OPENGL_LIBRARIES}
-  # ${GLEW_LIBRARIES}
   ${GLM_LIBRARIES}
 )
 
