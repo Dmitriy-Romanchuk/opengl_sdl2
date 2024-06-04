@@ -3,7 +3,7 @@
 #include "GameObjects/Sprite.hpp"
 
 #include <SDL2/SDL_events.h>
-#include <gl/glew.h>
+#include <glad.h>
 #include <glm/vec2.hpp>
 #include <vector>
 

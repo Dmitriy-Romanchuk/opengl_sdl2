@@ -1,5 +1,5 @@
 #include "MainWindow.hpp"
-#include <GL/glew.h>
+#include "glad.h"
 #include <iostream>
 
 bool Window::init()
@@ -21,9 +21,9 @@ bool Window::init()
     OpenGLContext = SDL_GL_CreateContext(m_display);
 
     // glew initialize;
-    if (glewInit() != GLEW_OK)
+    if (!gladLoadGLLoader((GLADloadproc)SDL_GL_GetProcAddress))
     {
-        std::cout << ("Error in glewInit\n");
+        std::cout << "Failed to initialize GLAD" << std::endl;
 
         return false;
     }
