@@ -1,5 +1,5 @@
 cmake_minimum_required(VERSION 3.21.3)
-SET(CMAKE_CXX_COMPILER g++)
+set(CMAKE_CXX_COMPILER g++)
 
 project(arcanoid)
 
@@ -17,8 +17,8 @@ include_directories(
     ${CMAKE_CURRENT_SOURCE_DIR}/external/glad/include/glad
 )
 
-SET(LINKER_FLAGS "-Wall -lmingw32")
-SET(CMAKE_CXX_FLAGS "${CMAKE_CXX_FLAGS} ${LINKER_FLAGS}")
+set(LINKER_FLAGS "-Wall -lmingw32")
+set(CMAKE_CXX_FLAGS "${CMAKE_CXX_FLAGS} ${LINKER_FLAGS}")
 
 set(EXTERNAL_SOURCE
   ${CMAKE_CURRENT_SOURCE_DIR}/external/stb_image/stb_image.cpp
