@@ -44,5 +44,5 @@ private:
 
     Sprite* m_sprite = nullptr;
 
-    GLfloat m_scale = 0.5f;
+    GLfloat m_scale = 1.0f;
 };
