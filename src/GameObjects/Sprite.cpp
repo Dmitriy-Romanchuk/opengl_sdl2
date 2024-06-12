@@ -8,8 +8,8 @@ void Sprite::render(RenderDevice* renderDevice, const glm::vec2& position, float
 
     data[0] = position.x;
     data[1] = position.y;
-    data[2] = 0.0f;
-    data[3] = 1.0f;
+    data[2] = 0.0f; //z
+    data[3] = 1.0f; //coordinates of texture
     data[4] = 1.0f;
 
     data[5] = position.x + scale;
