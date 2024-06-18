@@ -1,8 +1,8 @@
 #pragma once
 
-#include "external/stb_image/stb_image.h"
+#include <stb_image/stb_image.h>
+#include <glad/glad.h>
 
-#include <glad.h>
 #include <string>
 #include <vector>
 

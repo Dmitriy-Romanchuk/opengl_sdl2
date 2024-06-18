@@ -1,0 +1,10 @@
+add_subdirectory(${CMAKE_CURRENT_SOURCE_DIR}/SDL)
+add_subdirectory(${CMAKE_CURRENT_SOURCE_DIR}/glm)
+
+set(LIBRARIES
+    SDL2::SDL2main
+    SDL2::SDL2
+    glm::glm
+)
+
+set(EXTERNAL_LIBRARIES ${EXTERNAL_LIBRARIES} ${LIBRARIES} PARENT_SCOPE)
