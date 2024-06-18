@@ -23,7 +23,7 @@ include_directories(
 
 set(LINKER_FLAGS -Wall)
 
-if(WIN32)
+if(WIN)
   list(APPEND LINKER_FLAGS
     -lmingw32
   )
