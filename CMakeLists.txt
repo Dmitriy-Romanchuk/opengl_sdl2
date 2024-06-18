@@ -47,7 +47,7 @@ add_executable(app
 )
 
 # copy dll in the same directory as executable
-if(WIN32)
+if(WIN)
   add_custom_command(TARGET app POST_BUILD
     COMMAND ${CMAKE_COMMAND} -E copy_if_different
     "${CMAKE_CURRENT_SOURCE_DIR}/.build/external/submodules/SDL/SDL2d.dll"
