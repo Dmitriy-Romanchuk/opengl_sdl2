@@ -46,7 +46,7 @@ add_executable(app
 )
 
 # copy dll in the same directory as executable
-if(WIN32 OR WIN)
+if(WIN32)
   add_custom_command(TARGET app POST_BUILD
     COMMAND ${CMAKE_COMMAND} -E copy_if_different
     "${CMAKE_CURRENT_SOURCE_DIR}/.build/external/submodules/SDL/SDL2d.dll"
@@ -63,5 +63,7 @@ target_include_directories(app PRIVATE
 list(APPEND RESOURCE
   ${CMAKE_CURRENT_SOURCE_DIR}/shaders/frag.glsl
   ${CMAKE_CURRENT_SOURCE_DIR}/shaders/vert.glsl
+  ${CMAKE_CURRENT_SOURCE_DIR}/shaders/frag_ball.glsl
+  ${CMAKE_CURRENT_SOURCE_DIR}/shaders/vert_ball.glsl
   ${CMAKE_CURRENT_SOURCE_DIR}/platform.jpg
 )
