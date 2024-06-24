@@ -28,7 +28,7 @@ namespace
 } // namespace
 
 Player::Player()
-    : m_position({ 0.0f, 0.0f })
+    : m_position({ -0.5f, -0.95f })
     , m_directionFlags(0u)
     , m_sprite(createSprite())
 {

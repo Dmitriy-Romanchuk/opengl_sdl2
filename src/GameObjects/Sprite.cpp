@@ -12,13 +12,13 @@ void Sprite::render(RenderDevice* renderDevice, const glm::vec2& position, float
     data[3] = 1.0f; //coordinates of texture
     data[4] = 1.0f;
 
-    data[5] = position.x + scale;
+    data[5] = position.x + scale * 5;
     data[6] = position.y;
     data[7] = 0.0f;
     data[8] = 1.0f;
     data[9] = 0.0f;
 
-    data[10] = position.x + scale;
+    data[10] = position.x + scale * 5;
     data[11] = position.y + scale;
     data[12] = 0.0f;
     data[13] = 0.0f;
