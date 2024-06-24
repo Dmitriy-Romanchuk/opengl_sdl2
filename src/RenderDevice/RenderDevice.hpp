@@ -26,7 +26,7 @@ public:
 
 private:
     int width, height, nrChannels;
-    unsigned char* image = stbi_load("container.jpg", &width, &height, &nrChannels, 0);
+    unsigned char* image = stbi_load("platform.jpg", &width, &height, &nrChannels, 0);
 
 private:
     void CreateGraphicsPiepline();

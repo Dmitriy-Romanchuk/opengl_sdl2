@@ -68,5 +68,5 @@ target_include_directories(app PRIVATE
 list(APPEND RESOURCE
   ${CMAKE_CURRENT_SOURCE_DIR}/shaders/frag.glsl
   ${CMAKE_CURRENT_SOURCE_DIR}/shaders/vert.glsl
-  ${CMAKE_CURRENT_SOURCE_DIR}/container.jpg
+  ${CMAKE_CURRENT_SOURCE_DIR}/platform.jpg
 )
