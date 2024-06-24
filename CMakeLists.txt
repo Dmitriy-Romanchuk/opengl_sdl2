@@ -7,7 +7,6 @@ find_package(OpenGL REQUIRED)
 
 set(EXTERNAL_LIBRARIES)
 set(EXTERNAL_SOURCE)
-# ${CMAKE_CURRENT_SOURCE_DIR}/external/stb_image/stb_image.cpp
 
 add_subdirectory(${PROJECT_SOURCE_DIR}/external)
 
@@ -47,18 +46,14 @@ add_executable(app
 )
 
 # copy dll in the same directory as executable
-if(WIN)
+if(WIN32 OR WIN)
   add_custom_command(TARGET app POST_BUILD
     COMMAND ${CMAKE_COMMAND} -E copy_if_different
     "${CMAKE_CURRENT_SOURCE_DIR}/.build/external/submodules/SDL/SDL2d.dll"
     $<TARGET_FILE_DIR:app>)
 endif()
 
-target_link_libraries(app PRIVATE ${EXTERNAL_LIBRARIES}
-  # glad
-  # SDL2::SDL2main
-  # SDL2::SDL2
-)
+target_link_libraries(app PRIVATE ${EXTERNAL_LIBRARIES})
 
 target_include_directories(app PRIVATE
   ${CMAKE_CURRENT_SOURCE_DIR}/src
