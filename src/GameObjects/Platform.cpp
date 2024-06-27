@@ -1,19 +1,19 @@
-#include "Player.hpp"
+#include "Platform.hpp"
 
 namespace
 {
     struct
     {
-        Player::Direction direction;
+        Platform::Direction direction;
         SDL_Keycode sym;
     } DirectionMapping[] = {
-        { Player::Direction::Up, SDLK_UP },
-        { Player::Direction::Down, SDLK_DOWN },
-        { Player::Direction::Left, SDLK_LEFT },
-        { Player::Direction::Right, SDLK_RIGHT },
+        { Platform::Direction::Up, SDLK_UP },
+        { Platform::Direction::Down, SDLK_DOWN },
+        { Platform::Direction::Left, SDLK_LEFT },
+        { Platform::Direction::Right, SDLK_RIGHT },
     };
 
-    Player::Direction getDirection(SDL_Keycode sym)
+    Platform::Direction getDirection(SDL_Keycode sym)
     {
         for (const auto& mapping : DirectionMapping)
         {
@@ -23,18 +23,18 @@ namespace
             }
         }
         assert(false);
-        return Player::Direction::None;
+        return Platform::Direction::None;
     }
 } // namespace
 
-Player::Player()
+Platform::Platform()
     : m_position({ -0.5f, -0.95f })
     , m_directionFlags(0u)
     , m_sprite(createSprite())
 {
 }
 
-void Player::input(const SDL_Event& m_event)
+void Platform::input(const SDL_Event& m_event)
 {
     if (m_event.type == SDL_KEYDOWN || m_event.type == SDL_KEYUP)
     {
@@ -62,7 +62,7 @@ void Player::input(const SDL_Event& m_event)
     }
 }
 
-void Player::update(float dt)
+void Platform::update(float dt)
 {
     glm::vec2 offset = { 0.0f, 0.0f };
 
@@ -89,12 +89,12 @@ void Player::update(float dt)
     m_position += offset;
 }
 
-void Player::render(RenderDevice* renderDevice)
+void Platform::render(RenderDevice* renderDevice)
 {
     m_sprite->render(renderDevice, m_position, m_scale);
 }
 
-void Player::changeDirection(SDL_Keycode sym, bool add)
+void Platform::changeDirection(SDL_Keycode sym, bool add)
 {
     Direction direction = getDirection(sym);
 
@@ -108,21 +108,21 @@ void Player::changeDirection(SDL_Keycode sym, bool add)
     }
 }
 
-void Player::addDirectionState(Direction direction)
+void Platform::addDirectionState(Direction direction)
 {
     m_directionFlags |= static_cast<uint32_t>(direction);
 }
 
-void Player::removeDirectionState(Direction direction)
+void Platform::removeDirectionState(Direction direction)
 {
     m_directionFlags &= ~static_cast<uint32_t>(direction);
 }
 
-Sprite* Player::createSprite()
+Sprite* Platform::createSprite()
 {
     return new Sprite();
 }
 
-Player::~Player()
+Platform::~Platform()
 {
 }

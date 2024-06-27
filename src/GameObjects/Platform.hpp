@@ -10,11 +10,11 @@
 class Sprite;
 class RenderDevice;
 
-class Player
+class Platform
 {
 public:
-    Player(/* args */);
-    ~Player();
+    Platform(/* args */);
+    ~Platform();
 
 public:
     enum class Direction
