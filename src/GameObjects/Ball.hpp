@@ -9,10 +9,4 @@ public:
     ~Ball();
 };
 
-Ball::Ball(/* args */)
-{
-}
 
-Ball::~Ball()
-{
-}

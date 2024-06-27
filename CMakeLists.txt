@@ -39,6 +39,7 @@ set(SOURCE
   ${CMAKE_CURRENT_SOURCE_DIR}/src/GameObjects/Platform.cpp
   ${CMAKE_CURRENT_SOURCE_DIR}/src/GameObjects/Sprite.cpp
   ${CMAKE_CURRENT_SOURCE_DIR}/src/GameObjects/ResourceStorage.cpp
+  ${CMAKE_CURRENT_SOURCE_DIR}/src/GameObjects/Ball.cpp
 )
 
 add_executable(app
