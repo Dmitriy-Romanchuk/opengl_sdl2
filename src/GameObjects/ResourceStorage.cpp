@@ -3,3 +3,11 @@
 void ResourceStorage::init()
 {
 }
+
+ResourceStorage::ResourceStorage(/* args */)
+{
+}
+
+ResourceStorage::~ResourceStorage()
+{
+}

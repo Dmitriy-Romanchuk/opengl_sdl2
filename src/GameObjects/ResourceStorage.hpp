@@ -11,11 +11,3 @@ public:
 public:
     void init();
 };
-
-ResourceStorage::ResourceStorage(/* args */)
-{
-}
-
-ResourceStorage::~ResourceStorage()
-{
-}
