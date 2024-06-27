@@ -1,6 +1,6 @@
 #pragma once
 
-#include "GameObjects/Player.hpp"
+#include "GameObjects/Platform.hpp"
 #include "Pages/Page.hpp"
 
 class GamePage : public Page
@@ -14,5 +14,5 @@ public:
     void render(RenderDevice* renderDevice) override;
 
 private:
-    Player m_player;
+    Platform m_platform;
 };

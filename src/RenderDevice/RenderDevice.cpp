@@ -22,11 +22,6 @@ void RenderDevice::draw(const GLfloat* data, size_t size)
     glDrawElements(GL_TRIANGLES, 6, GL_UNSIGNED_INT, 0);
     glBindVertexArray(0);
     glBindTexture(GL_TEXTURE_2D, 0);
-
-    glUseProgram(m_ballShaderProgram);
-    glBindVertexArray(m_ballVAO);
-    glDrawElements(GL_TRIANGLES, 36, GL_UNSIGNED_INT, 0);
-    glBindVertexArray(0);
 }
 
 void RenderDevice::destroy()
@@ -77,13 +72,6 @@ void RenderDevice::init()
     glDisableVertexAttribArray(1);
     stbi_image_free(image);
     glBindTexture(GL_TEXTURE_2D, 0);
-
-    glGenVertexArrays(1, &m_ballVAO);
-    glBindVertexArray(m_ballVAO);
-    glBindBuffer(GL_ARRAY_BUFFER, m_vertexBufferObject);
-    glVertexAttribPointer(0, 3, GL_FLOAT, GL_FALSE, 5 * sizeof(GLfloat), (GLvoid*)0);
-    glEnableVertexAttribArray(0);
-    glBindVertexArray(0);
 }
 
 GLuint RenderDevice::CompileShader(GLuint type, const std::string& source)
@@ -143,9 +131,5 @@ void RenderDevice::CreateGraphicsPiepline()
     std::string vertexShaderSource = LoadShaderAsString("shaders/vert.glsl");
     std::string fragmentShaderSource = LoadShaderAsString("shaders/frag.glsl");
 
-    std::string ball_vertexShaderSource = LoadShaderAsString("shaders/vert_ball.glsl");
-    std::string ball_fragmentShaderSource = LoadShaderAsString("shaders/frag_ball.glsl");
-
     m_shaderProgram = CreateShaderProgram(vertexShaderSource, fragmentShaderSource);
-    m_ballShaderProgram = CreateShaderProgram(ball_vertexShaderSource, ball_fragmentShaderSource);
 }
