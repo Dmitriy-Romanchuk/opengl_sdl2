@@ -18,6 +18,7 @@ include_directories(
   ${CMAKE_CURRENT_SOURCE_DIR}/external/submodules/sdl/include
   ${CMAKE_CURRENT_SOURCE_DIR}/external/submodules/glm
   ${CMAKE_CURRENT_SOURCE_DIR}/external/glad/include/glad
+  ${CMAKE_CURRENT_SOURCE_DIR}/external/json
 )
 
 set(LINKER_FLAGS -Wall)
@@ -65,7 +66,5 @@ target_include_directories(app PRIVATE
 list(APPEND RESOURCE
   ${CMAKE_CURRENT_SOURCE_DIR}/shaders/frag.glsl
   ${CMAKE_CURRENT_SOURCE_DIR}/shaders/vert.glsl
-  ${CMAKE_CURRENT_SOURCE_DIR}/shaders/frag_ball.glsl
-  ${CMAKE_CURRENT_SOURCE_DIR}/shaders/vert_ball.glsl
   ${CMAKE_CURRENT_SOURCE_DIR}/platform.jpg
 )
