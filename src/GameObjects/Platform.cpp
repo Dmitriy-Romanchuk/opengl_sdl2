@@ -7,8 +7,6 @@ namespace
         Platform::Direction direction;
         SDL_Keycode sym;
     } DirectionMapping[] = {
-        { Platform::Direction::Up, SDLK_UP },
-        { Platform::Direction::Down, SDLK_DOWN },
         { Platform::Direction::Left, SDLK_LEFT },
         { Platform::Direction::Right, SDLK_RIGHT },
     };
@@ -65,16 +63,6 @@ void Platform::input(const SDL_Event& m_event)
 void Platform::update(float dt)
 {
     glm::vec2 offset = { 0.0f, 0.0f };
-
-    if (m_directionFlags & static_cast<uint32_t>(Direction::Up))
-    {
-        offset.y = +m_speed * dt;
-    }
-
-    if (m_directionFlags & static_cast<uint32_t>(Direction::Down))
-    {
-        offset.y = -m_speed * dt;
-    }
 
     if (m_directionFlags & static_cast<uint32_t>(Direction::Left))
     {

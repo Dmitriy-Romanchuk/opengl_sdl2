@@ -20,10 +20,8 @@ public:
     enum class Direction
     {
         None,
-        Up = 1 << 0,
-        Down = 1 << 1,
-        Left = 1 << 2,
-        Right = 1 << 3
+        Left = 1 << 0,
+        Right = 1 << 1
     };
 
 public:
