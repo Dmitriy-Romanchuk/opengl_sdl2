@@ -34,29 +34,20 @@ Platform::Platform()
 
 void Platform::input(const SDL_Event& m_event)
 {
-    if (m_event.type == SDL_KEYDOWN || m_event.type == SDL_KEYUP)
+    auto sym = m_event.key.keysym.sym;
+
+    switch (sym)
     {
-        auto sym = m_event.key.keysym.sym;
-
-        if (sym == SDLK_UP || sym == SDLK_DOWN || sym == SDLK_LEFT || sym == SDLK_RIGHT)
-        {
-            bool add = m_event.type == SDL_KEYDOWN ? true : false;
-            changeDirection(sym, add);
-        }
-    }
-
-    if (m_event.type == SDL_KEYDOWN)
-    {
-        auto sym = m_event.key.keysym.sym;
-
-        if (sym == SDLK_KP_MINUS)
-        {
-            m_scale -= 0.005;
-        }
-        if (sym == SDLK_KP_PLUS)
-        {
-            m_scale += 0.005;
-        }
+    case SDLK_LEFT:
+        addDirectionState(Direction::Left);
+        removeDirectionState(Direction::Right);
+        break;
+    case SDLK_RIGHT:
+        addDirectionState(Direction::Right);
+        removeDirectionState(Direction::Left);
+        break;
+    default:
+        break;
     }
 }
 
@@ -86,7 +77,7 @@ void Platform::changeDirection(SDL_Keycode sym, bool add)
 {
     Direction direction = getDirection(sym);
 
-    if (add == true)
+    if (add)
     {
         addDirectionState(direction);
     }
