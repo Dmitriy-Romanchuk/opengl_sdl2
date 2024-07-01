@@ -1,30 +1,5 @@
 #include "Platform.hpp"
 
-namespace
-{
-    struct
-    {
-        Platform::Direction direction;
-        SDL_Keycode sym;
-    } DirectionMapping[] = {
-        { Platform::Direction::Left, SDLK_LEFT },
-        { Platform::Direction::Right, SDLK_RIGHT },
-    };
-
-    Platform::Direction getDirection(SDL_Keycode sym)
-    {
-        for (const auto& mapping : DirectionMapping)
-        {
-            if (mapping.sym == sym)
-            {
-                return mapping.direction;
-            }
-        }
-        assert(false);
-        return Platform::Direction::None;
-    }
-} // namespace
-
 Platform::Platform()
     : m_position({ -0.5f, -0.95f })
     , m_directionFlags(0u)
@@ -73,19 +48,19 @@ void Platform::render(RenderDevice* renderDevice)
     m_sprite->render(renderDevice, m_position, m_scale);
 }
 
-void Platform::changeDirection(SDL_Keycode sym, bool add)
-{
-    Direction direction = getDirection(sym);
-
-    if (add)
-    {
-        addDirectionState(direction);
-    }
-    else
-    {
-        removeDirectionState(direction);
-    }
-}
+// void Platform::changeDirection(SDL_Keycode sym, bool add)
+// {
+// Direction direction = getDirection(sym);
+//
+// if (add)
+// {
+// addDirectionState(direction);
+// }
+// else
+// {
+// removeDirectionState(direction);
+// }
+// }
 
 void Platform::addDirectionState(Direction direction)
 {

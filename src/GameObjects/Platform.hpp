@@ -30,7 +30,6 @@ public:
     void render(RenderDevice* renderDevice);
 
 private:
-    void changeDirection(SDL_Keycode sym, bool add);
     void addDirectionState(Direction direction);
     void removeDirectionState(Direction direction);
     Sprite* createSprite();
