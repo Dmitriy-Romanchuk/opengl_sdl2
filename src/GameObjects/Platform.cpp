@@ -28,16 +28,16 @@ void Platform::input(const SDL_Event& m_event)
 
 void Platform::update(float dt)
 {
-    float offset = 0.0f;
+    glm::vec2 offset = { 0.0f, 0.0f };
 
     if (m_directionFlags & static_cast<uint32_t>(Direction::Left))
     {
-        offset= -m_speed * dt;
+        offset.x = -m_speed * dt;
     }
 
     if (m_directionFlags & static_cast<uint32_t>(Direction::Right))
     {
-        offset= +m_speed * dt;
+        offset.x = +m_speed * dt;
     }
 
     m_position += offset;
@@ -47,20 +47,6 @@ void Platform::render(RenderDevice* renderDevice)
 {
     m_sprite->render(renderDevice, m_position, m_scale);
 }
-
-// void Platform::changeDirection(SDL_Keycode sym, bool add)
-// {
-// Direction direction = getDirection(sym);
-//
-// if (add)
-// {
-// addDirectionState(direction);
-// }
-// else
-// {
-// removeDirectionState(direction);
-// }
-// }
 
 void Platform::addDirectionState(Direction direction)
 {
