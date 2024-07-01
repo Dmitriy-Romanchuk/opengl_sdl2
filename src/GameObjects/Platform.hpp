@@ -36,7 +36,7 @@ private:
 
 private:
     glm::vec2 m_position;
-    float m_speed = 0.3f;
+    float m_speed = 0.03f;
     uint32_t m_directionFlags;
 
     Sprite* m_sprite = nullptr;

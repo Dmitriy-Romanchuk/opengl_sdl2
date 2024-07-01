@@ -28,16 +28,16 @@ void Platform::input(const SDL_Event& m_event)
 
 void Platform::update(float dt)
 {
-    glm::vec2 offset = { 0.0f, 0.0f };
+    float offset = 0.0f;
 
     if (m_directionFlags & static_cast<uint32_t>(Direction::Left))
     {
-        offset.x = -m_speed * dt;
+        offset= -m_speed * dt;
     }
 
     if (m_directionFlags & static_cast<uint32_t>(Direction::Right))
     {
-        offset.x = +m_speed * dt;
+        offset= +m_speed * dt;
     }
 
     m_position += offset;
